@@ -31,12 +31,12 @@ const serviceKeys = ["ui", "web", "cloud", "mobile", "consulting", "ai"] as cons
 const projectKeys = ["realestate", "coffee", "agency", "vision", "logistics", "education"] as const;
 
 const projectImages = [
-  "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=2070",
-  "https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&q=80&w=2071",
-  "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=2069",
-  "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=2070",
-  "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?auto=format&fit=crop&q=80&w=2000",
-  "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80&w=2000",
+  "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=60&w=800",
+  "https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&q=60&w=800",
+  "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=60&w=800",
+  "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=60&w=800",
+  "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?auto=format&fit=crop&q=60&w=800",
+  "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=60&w=800",
 ];
 
 const githubLinks = [
@@ -59,39 +59,31 @@ export default function HomeContent() {
         {/* 3D Background Scene */}
         <HeroScene />
 
-        {/* Animated floating orbs */}
+        {/* Static ambient gradients (replaced infinite motion.div animations) */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <motion.div
-            className="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full bg-accent/8 blur-[120px]"
-            animate={{ y: [0, -30, 0], x: [0, 20, 0], scale: [1, 1.1, 1] }}
-            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          />
-          <motion.div
-            className="absolute -bottom-40 -left-40 w-[500px] h-[500px] rounded-full bg-sky-500/8 blur-[120px]"
-            animate={{ y: [0, 30, 0], x: [0, -20, 0], scale: [1, 1.05, 1] }}
-            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-          />
+          <div className="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full bg-accent/8 blur-[80px]" />
+          <div className="absolute -bottom-40 -left-40 w-[500px] h-[500px] rounded-full bg-sky-500/8 blur-[80px]" />
         </div>
 
         {/* Grid pattern */}
         <div className="absolute inset-0 opacity-[0.02] grid-pattern-overlay" />
 
-        {/* Decorative geometric shapes */}
+        {/* Subtle decorative shapes with gentle CSS animations */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <motion.div
             className="absolute top-20 right-[20%] w-4 h-4 rounded-full border-2 border-accent/30"
-            animate={{ y: [0, -20, 0], opacity: [0.3, 0.7, 0.3] }}
-            transition={{ duration: 4, repeat: Infinity }}
+            animate={{ y: [0, -15, 0], opacity: [0.3, 0.6, 0.3] }}
+            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
           />
           <motion.div
             className="absolute top-[40%] left-[10%] w-3 h-3 bg-sky-400/30 rounded-sm rotate-45"
-            animate={{ y: [0, 15, 0], rotate: [45, 135, 45], opacity: [0.3, 0.6, 0.3] }}
-            transition={{ duration: 5, repeat: Infinity }}
+            animate={{ y: [0, 10, 0], opacity: [0.2, 0.5, 0.2] }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
           />
           <motion.div
-            className="absolute bottom-[30%] right-[15%] w-6 h-6 border border-emerald-400/20 rounded-lg"
-            animate={{ y: [0, -10, 0], rotate: [0, 45, 0] }}
-            transition={{ duration: 6, repeat: Infinity }}
+            className="absolute bottom-[30%] right-[15%] w-5 h-5 border border-emerald-400/20 rounded-lg"
+            animate={{ y: [0, -8, 0], rotate: [0, 20, 0] }}
+            transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
           />
         </div>
 
@@ -108,20 +100,29 @@ export default function HomeContent() {
             </FadeIn>
 
             <FadeIn delay={0.2}>
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1]">
+              <motion.h1
+                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1]"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+              >
                 {t("title")}{" "}
                 <span className="bg-linear-to-r from-accent via-sky-400 to-emerald-400 bg-clip-text text-transparent bg-size-[200%_auto] animate-[gradient-shift_3s_ease-in-out_infinite]">
                   {t("titleHighlight")}
                 </span>
                 <br />
                 {t("titleEnd")}
-              </h1>
+              </motion.h1>
             </FadeIn>
-
             <FadeIn delay={0.3}>
-              <p className="mt-6 text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              <motion.p
+                className="mt-6 text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed"
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.5 }}
+              >
                 {t("subtitle")}
-              </p>
+              </motion.p>
             </FadeIn>
 
             <FadeIn delay={0.4}>
@@ -142,40 +143,24 @@ export default function HomeContent() {
 
             {/* Stats Row */}
             <FadeIn delay={0.6} className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-border/50 pt-10">
-              <motion.div
-                className="flex flex-col items-center gap-2"
-                whileHover={{ y: -4 }}
-                transition={{ duration: 0.2 }}
-              >
+              <div className="flex flex-col items-center gap-2 hover:-translate-y-1 transition-transform duration-200">
                 <AnimatedCounter to={50} suffix="+" className="text-3xl md:text-4xl font-bold text-foreground" />
                 <span className="text-sm text-muted-foreground font-medium">Projects Delivered</span>
-              </motion.div>
-              <motion.div
-                className="flex flex-col items-center gap-2"
-                whileHover={{ y: -4 }}
-                transition={{ duration: 0.2 }}
-              >
+              </div>
+              <div className="flex flex-col items-center gap-2 hover:-translate-y-1 transition-transform duration-200">
                 <AnimatedCounter to={5} suffix="/5" className="text-3xl md:text-4xl font-bold text-foreground" />
                 <span className="text-sm text-muted-foreground font-medium flex items-center gap-1">
                   Average Rating <Star size={14} className="text-amber-500 fill-amber-500" />
                 </span>
-              </motion.div>
-              <motion.div
-                className="flex flex-col items-center gap-2"
-                whileHover={{ y: -4 }}
-                transition={{ duration: 0.2 }}
-              >
+              </div>
+              <div className="flex flex-col items-center gap-2 hover:-translate-y-1 transition-transform duration-200">
                 <AnimatedCounter to={99} suffix="%" className="text-3xl md:text-4xl font-bold text-foreground" />
                 <span className="text-sm text-muted-foreground font-medium">Client Satisfaction</span>
-              </motion.div>
-              <motion.div
-                className="flex flex-col items-center gap-2"
-                whileHover={{ y: -4 }}
-                transition={{ duration: 0.2 }}
-              >
+              </div>
+              <div className="flex flex-col items-center gap-2 hover:-translate-y-1 transition-transform duration-200">
                 <AnimatedCounter to={24} suffix="/7" className="text-3xl md:text-4xl font-bold text-foreground" />
                 <span className="text-sm text-muted-foreground font-medium">Support Available</span>
-              </motion.div>
+              </div>
             </FadeIn>
           </div>
         </Container>

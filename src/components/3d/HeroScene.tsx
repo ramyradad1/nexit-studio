@@ -4,7 +4,6 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { useMemo, useRef } from "react";
 import * as THREE from "three";
 import { useTheme } from "@/components/providers/ThemeProvider";
-import { Text } from "@react-three/drei";
 
 const vertexShader = `
   attribute float size;
@@ -37,71 +36,6 @@ const fragmentShader = `
   }
 `;
 
-function TechSymbol({
-    text,
-    position,
-    color,
-    fontSize = 1,
-    speed = 1
-}: {
-    text: string;
-    position: [number, number, number];
-    color: string;
-    fontSize?: number;
-    speed?: number;
-}) {
-    const ref = useRef<THREE.Mesh>(null!);
-    const initialY = position[1];
-
-    useFrame((state) => {
-      const t = state.clock.elapsedTime * speed;
-      if (ref.current) {
-          // Gentle floating motion
-          ref.current.position.y = initialY + Math.sin(t) * 0.3;
-          // Gentle rotation
-          ref.current.rotation.y = Math.sin(t * 0.5) * 0.5;
-          ref.current.rotation.z = Math.cos(t * 0.3) * 0.1;
-      }
-  });
-
-    return (
-        <Text
-            ref={ref}
-            position={position}
-            fontSize={fontSize}
-            color={color}
-            anchorX="center"
-            anchorY="middle"
-            fontWeight="bold"
-            outlineWidth={0.02}
-            outlineColor={color}
-            fillOpacity={0.8}
-        >
-            {text}
-        </Text>
-    );
-}
-
-function LightModeGeometry() {
-    return (
-        <group>
-            <ambientLight intensity={0.5} />
-            <directionalLight position={[5, 10, 5]} intensity={1.5} color="#ffffff" />
-
-          {/* Code Symbols */}
-          <TechSymbol text="< />" position={[-4, 2, -2]} color="#0284c7" fontSize={1.2} speed={0.8} />
-          <TechSymbol text="{ }" position={[4, -1, -1]} color="#0f766e" fontSize={1.5} speed={1.2} />
-          <TechSymbol text="[]" position={[-2, -3, -3]} color="#0369a1" fontSize={1.3} speed={0.9} />
-          <TechSymbol text="/" position={[3, 3, -2]} color="#0ea5e9" fontSize={1.6} speed={1.1} />
-
-          {/* Decorative Particles for light mode */}
-          <TechSymbol text="+" position={[-5, 0, -4]} color="#10b981" fontSize={0.6} speed={1.5} />
-          <TechSymbol text="*" position={[5, 2, -5]} color="#0284c7" fontSize={0.8} speed={0.7} />
-          <TechSymbol text="+" position={[1, -4, -3]} color="#0369a1" fontSize={0.5} speed={1.3} />
-      </group>
-  );
-}
-
 function createSeededRandom(seed: number) {
     let currentSeed = seed;
     return () => {
@@ -111,7 +45,8 @@ function createSeededRandom(seed: number) {
 }
 
 function Starfield({ theme }: { theme: "light" | "dark" }) {
-    const count = 1500;
+    // Reduced from 1500 to 600 for better performance
+    const count = 600;
 
     const [positions, colors, sizes, phases] = useMemo(() => {
         const pos = new Float32Array(count * 3);
@@ -123,11 +58,9 @@ function Starfield({ theme }: { theme: "light" | "dark" }) {
 
         const isDark = theme === "dark";
 
-        // In dark mode: cyan, sky, and white stars.
-        // In light mode: much darker blues and teals to be visible on white.
-        const c1 = new THREE.Color(isDark ? "#ffffff" : "#0284c7"); // Bright white vs Dark Sky Blue
-        const c2 = new THREE.Color(isDark ? "#06b6d4" : "#0f766e"); // Cyan vs Dark Teal
-        const c3 = new THREE.Color(isDark ? "#38bdf8" : "#0369a1"); // Light Sky vs Dark Blue
+        const c1 = new THREE.Color(isDark ? "#ffffff" : "#0284c7");
+        const c2 = new THREE.Color(isDark ? "#06b6d4" : "#0f766e");
+        const c3 = new THREE.Color(isDark ? "#38bdf8" : "#0369a1");
 
     for (let i = 0; i < count; i++) {
         const r = 10 + seededRandom() * 40;
@@ -147,8 +80,8 @@ function Starfield({ theme }: { theme: "light" | "dark" }) {
         col[i * 3 + 1] = c.g;
         col[i * 3 + 2] = c.b;
 
-        // Make stars much larger
-        siz[i] = 0.3 + seededRandom() * 0.6;
+        // Slightly larger to compensate for fewer particles
+        siz[i] = 0.04 + seededRandom() * 0.08;
         pha[i] = seededRandom() * Math.PI * 2;
     }
         return [pos, col, siz, pha];
@@ -162,7 +95,6 @@ function Starfield({ theme }: { theme: "light" | "dark" }) {
             materialRef.current.uniforms.time.value = state.clock.elapsedTime;
         }
         if (pointsRef.current) {
-            // Simulate travelling through space by rotating the sphere
             pointsRef.current.rotation.y += delta * 0.03;
             pointsRef.current.rotation.x += delta * 0.015;
         }
@@ -180,8 +112,7 @@ function Starfield({ theme }: { theme: "light" | "dark" }) {
               ref={materialRef}
               vertexShader={vertexShader}
               fragmentShader={fragmentShader}
-        transparent
-              // Additive blending works best in dark mode.
+              transparent
               blending={theme === "dark" ? THREE.AdditiveBlending : THREE.NormalBlending}
               depthWrite={false}
               uniforms={{ time: { value: 0 } }}
@@ -198,11 +129,11 @@ export function HeroScene() {
     <div className="absolute inset-0 -z-10">
       <Canvas
         camera={{ position: [0, 0, 8], fov: 45 }}
-        dpr={[1, 1.5]}
+              dpr={[1, 1]}
         style={{ pointerEvents: "none" }}
-        gl={{ antialias: true, alpha: true }}
+              gl={{ antialias: false, alpha: true, powerPreference: "low-power" }}
       >
-              {theme === "light" ? <LightModeGeometry /> : <Starfield theme={theme} />}
+              <Starfield theme={theme} />
       </Canvas>
     </div>
   );

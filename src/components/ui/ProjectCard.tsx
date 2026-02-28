@@ -35,6 +35,7 @@ export function ProjectCard({ slug, title, description, tags, image, index, live
           src={image}
           alt={title}
           fill
+          loading="lazy"
           className="object-cover transition-all duration-700 group-hover:scale-110 group-hover:rotate-1"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
