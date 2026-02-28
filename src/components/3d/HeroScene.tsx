@@ -30,12 +30,12 @@ const fragmentShader = `
     float dist = length(gl_PointCoord - vec2(0.5));
     if (dist > 0.5) discard;
 
-    // Sharper radial falloff for "pinpoint" realistic stars
-    float alpha = pow(1.0 - dist * 2.0, 3.0);
+    // Softer, more visible glow for better visibility
+    float alpha = smoothstep(0.5, 0.0, dist);
 
-    // Natural twinkling
+    // Natural twinkling with higher minimum brightness
     float twinkle = (sin(time * 0.7 + vPhase) + 1.0) / 2.0;
-    twinkle = 0.6 + 0.4 * pow(twinkle, 2.0);
+    twinkle = 0.7 + 0.3 * pow(twinkle, 2.0);
 
     gl_FragColor = vec4(vColor, alpha * twinkle);
   }
@@ -86,8 +86,8 @@ function Starfield({ theme }: { theme: "light" | "dark" }) {
         col[i * 3 + 1] = c.g;
         col[i * 3 + 2] = c.b;
 
-        // Smaller, realistic pinpoint stars
-        siz[i] = 0.4 + seededRandom() * 0.8;
+        // Naturally visible stars (Size increased for visibility)
+        siz[i] = 0.5 + seededRandom() * 1.0;
         pha[i] = seededRandom() * Math.PI * 2;
     }
         return [pos, col, siz, pha];
