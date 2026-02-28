@@ -6,6 +6,7 @@ import * as THREE from "three";
 import { useTheme } from "@/components/providers/ThemeProvider";
 
 const vertexShader = `
+  uniform float time;
   attribute float size;
   attribute float phase;
   varying float vPhase;
@@ -13,7 +14,14 @@ const vertexShader = `
   void main() {
     vPhase = phase;
     vColor = color;
-    vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
+
+    // Animate the position to make the stars float and move
+    vec3 animatedPos = position;
+    animatedPos.x += sin(time * 0.3 + phase) * 2.0;
+    animatedPos.y += cos(time * 0.2 + phase) * 2.0;
+    animatedPos.z += sin(time * 0.1 + phase) * 2.0;
+
+    vec4 mvPosition = modelViewMatrix * vec4(animatedPos, 1.0);
     gl_PointSize = size * (200.0 / -mvPosition.z);
     gl_Position = projectionMatrix * mvPosition;
   }
@@ -86,8 +94,8 @@ function Starfield({ theme }: { theme: "light" | "dark" }) {
         col[i * 3 + 1] = c.g;
         col[i * 3 + 2] = c.b;
 
-        // Naturally visible stars (Size increased for visibility)
-        siz[i] = 0.5 + seededRandom() * 1.0;
+        // Small, moving realistic stars
+        siz[i] = 0.2 + seededRandom() * 0.4;
         pha[i] = seededRandom() * Math.PI * 2;
     }
         return [pos, col, siz, pha];
