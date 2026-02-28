@@ -27,10 +27,11 @@ const fragmentShader = `
     float dist = length(gl_PointCoord - vec2(0.5));
     if (dist > 0.5) discard;
     
-    float alpha = smoothstep(0.5, 0.1, dist);
-    // Slower twinkle effect
-    float twinkle = (sin(time * 0.5 + vPhase) + 1.0) / 2.0;
-    float currentOpacity = 0.1 + 0.9 * twinkle;
+    float alpha = smoothstep(0.5, 0.05, dist);
+    // Strong twinkle on/off effect
+    float twinkle = (sin(time * 1.2 + vPhase) + 1.0) / 2.0;
+    twinkle = twinkle * twinkle * twinkle; // sharper on/off curve
+    float currentOpacity = 0.03 + 0.97 * twinkle;
 
     gl_FragColor = vec4(vColor, alpha * currentOpacity);
   }
@@ -80,8 +81,8 @@ function Starfield({ theme }: { theme: "light" | "dark" }) {
         col[i * 3 + 1] = c.g;
         col[i * 3 + 2] = c.b;
 
-        // Slightly larger to compensate for fewer particles
-        siz[i] = 0.04 + seededRandom() * 0.08;
+        // Massive visible twinkling stars
+        siz[i] = 2.0 + seededRandom() * 4.0;
         pha[i] = seededRandom() * Math.PI * 2;
     }
         return [pos, col, siz, pha];
