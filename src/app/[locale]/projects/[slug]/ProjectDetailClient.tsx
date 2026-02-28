@@ -6,7 +6,7 @@ import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import {
-  ArrowLeft, ArrowRight, Calendar, Users, Tag, Github,
+  ArrowLeft, ArrowRight, Calendar, Users, Tag, Globe,
   Target, Zap, Lightbulb, CheckCircle2, TrendingUp, Code
 } from "lucide-react";
 
@@ -119,10 +119,10 @@ export default function ProjectDetailClient({ slug }: { slug: string }) {
                   Start a Similar Project
                   <ArrowRight size={16} className={isRtl ? 'mr-2 rotate-180' : 'ml-2'} />
                 </Button>
-                {project.githubUrl && (
-                  <Button href={project.githubUrl} variant="outline" size="lg" className="w-full sm:w-auto" external>
-                    <Github size={16} className={isRtl ? 'ml-2' : 'mr-2'} />
-                    View Code
+                {project.liveUrl && (
+                  <Button href={project.liveUrl} variant="outline" size="lg" className="w-full sm:w-auto" external>
+                    <Globe size={16} className={isRtl ? 'ml-2' : 'mr-2'} />
+                    {isRtl ? 'زيارة الموقع' : 'Visit Website'}
                   </Button>
                 )}
               </div>

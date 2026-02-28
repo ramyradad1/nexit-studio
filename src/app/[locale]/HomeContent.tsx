@@ -7,21 +7,21 @@ import { Button } from "@/components/ui/Button";
 import { ServiceCard } from "@/components/ui/ServiceCard";
 import { ProjectCard } from "@/components/ui/ProjectCard";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { Globe, Smartphone, Cloud, Palette, Brain, Lightbulb, ArrowRight, Star } from "lucide-react";
+import { Globe, Smartphone, PenTool, Palette, Search, ShoppingCart, ArrowRight, Star } from "lucide-react";
 import { FadeIn } from "@/components/animations/FadeIn";
 import { StaggerContainer, staggerItemVariants } from "@/components/animations/StaggerContainer";
 import { AnimatedCounter } from "@/components/animations/AnimatedCounter";
 
 const serviceIcons = [
-  <Globe key="web" size={24} />,
-  <Smartphone key="mobile" size={24} />,
-  <Cloud key="cloud" size={24} />,
   <Palette key="ui" size={24} />,
-  <Brain key="ai" size={24} />,
-  <Lightbulb key="consulting" size={24} />,
+  <Globe key="web" size={24} />,
+  <PenTool key="branding" size={24} />,
+  <Smartphone key="mobile" size={24} />,
+  <ShoppingCart key="ecommerce" size={24} />,
+  <Search key="seo" size={24} />,
 ];
 
-const serviceKeys = ["web", "mobile", "cloud", "ui", "ai", "consulting"] as const;
+const serviceKeys = ["ui", "web", "cloud", "mobile", "consulting", "ai"] as const;
 const projectKeys = ["realestate", "coffee", "agency", "vision", "logistics", "education"] as const;
 
 const projectImages = [
