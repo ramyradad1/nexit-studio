@@ -7,19 +7,29 @@ import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { ArrowLeft, ArrowRight, Calendar, Users, Tag, Github } from "lucide-react";
 
-export default function ProjectContent({
-  project,
-  projectKey,
-}: {
-  project: { image: string; tags: string[]; year: string; client: string; githubUrl?: string };
-  projectKey: string;
-}) {
+import { projectData } from "./data";
+
+export default function ProjectDetailClient({ slug }: { slug: string }) {
   const t = useTranslations("Projects");
+  const project = projectData[slug as keyof typeof projectData];
+
+  if (!project) {
+    return (
+      <Container className="py-20 text-center">
+        <h1 className="text-2xl font-bold">Project not found</h1>
+        <Button href="/projects" className="mt-6">
+          <ArrowLeft size={16} />
+          Back to Projects
+        </Button>
+      </Container>
+    );
+  }
+
+  const projectKey = slug as keyof typeof projectData;
 
   return (
     <section className="py-20 lg:py-28">
       <Container>
-        {/* Back Button */}
         <motion.div
           initial={{ opacity: 0, x: -10 }}
           animate={{ opacity: 1, x: 0 }}
@@ -32,7 +42,6 @@ export default function ProjectContent({
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-16">
-          {/* Hero Image */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -51,7 +60,6 @@ export default function ProjectContent({
             </div>
           </motion.div>
 
-          {/* Project Details */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -66,7 +74,6 @@ export default function ProjectContent({
               {t(`items.${projectKey}.description`)}
             </p>
 
-            {/* Meta Info */}
             <div className="space-y-4 mb-8">
               <div className="flex items-center gap-3 text-sm">
                 <div className="h-9 w-9 rounded-lg bg-accent/10 flex items-center justify-center text-accent">

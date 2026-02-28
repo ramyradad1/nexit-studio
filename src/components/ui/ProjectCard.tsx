@@ -29,7 +29,7 @@ export function ProjectCard({ slug, title, description, tags, image, index, gith
       className="group flex flex-col glass-card overflow-hidden hover:border-accent/30 transition-all duration-300 h-full"
     >
       {/* Image */}
-      <Link href={`/${locale}/projects/${slug}`} className="relative block aspect-[4/3] overflow-hidden">
+      <Link href={`/${locale}/projects/${slug}`} className="relative block aspect-4/3 overflow-hidden">
         <Image
           src={image}
           alt={title}
@@ -37,14 +37,14 @@ export function ProjectCard({ slug, title, description, tags, image, index, gith
           className="object-cover transition-transform duration-500 group-hover:scale-105"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
         <div className="absolute bottom-4 right-4 h-10 w-10 rounded-full bg-accent flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
           <ArrowUpRight size={18} />
         </div>
       </Link>
 
       {/* Content */}
-      <div className="p-5 sm:p-6 flex flex-col flex-grow">
+      <div className="p-5 sm:p-6 flex flex-col grow">
         <Link href={`/${locale}/projects/${slug}`}>
           <h3 className="text-lg font-semibold mb-2 group-hover:text-accent transition-colors">{title}</h3>
         </Link>

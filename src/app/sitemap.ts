@@ -2,6 +2,8 @@ import { MetadataRoute } from "next";
 
 const siteUrl = "https://nexait.studio";
 
+export const dynamic = 'force-static';
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes = ["", "/services", "/projects", "/reviews", "/about", "/contact"];
   

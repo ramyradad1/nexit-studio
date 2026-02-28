@@ -129,6 +129,8 @@ export function Navbar() {
                 <button
                   onClick={() => setMobileOpen(false)}
                   className="h-8 w-8 rounded-lg flex items-center justify-center hover:bg-muted/50 cursor-pointer"
+                  title="Close menu"
+                  aria-label="Close menu"
                 >
                   <X size={18} />
                 </button>

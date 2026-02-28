@@ -57,11 +57,7 @@ export default function HomePage() {
 
         {/* Grid Pattern Overlay */}
         <div
-          className="absolute inset-0 opacity-[0.02]"
-          style={{
-            backgroundImage: "linear-gradient(var(--fg) 1px, transparent 1px), linear-gradient(90deg, var(--fg) 1px, transparent 1px)",
-            backgroundSize: "60px 60px",
-          }}
+          className="absolute inset-0 opacity-[0.02] grid-pattern-overlay"
         />
 
         <Container className="relative py-20 lg:py-32">
@@ -85,7 +81,7 @@ export default function HomePage() {
               className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1]"
             >
               {t("title")}{" "}
-              <span className="bg-gradient-to-r from-accent via-sky-400 to-accent bg-clip-text text-transparent bg-[length:200%_auto] animate-[gradient-shift_3s_ease-in-out_infinite]">
+              <span className="bg-linear-to-r from-accent via-sky-400 to-accent bg-clip-text text-transparent bg-size-[200%_auto] animate-[gradient-shift_3s_ease-in-out_infinite]">
                 {t("titleHighlight")}
               </span>
               <br />
