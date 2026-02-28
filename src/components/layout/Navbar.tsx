@@ -8,6 +8,7 @@ import { Sun, Moon, Menu, X, Globe } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import clsx from "clsx";
+import logo from "../../../public/logo.png";
 
 const navItems = [
   { key: "home", href: "/" },
@@ -61,7 +62,7 @@ export function Navbar() {
                 transition={{ duration: 0.5 }}
               >
                 <Image
-                  src="/logo.png"
+                  src={logo}
                   alt="NexaIT Logo"
                   fill
                   className="object-contain"

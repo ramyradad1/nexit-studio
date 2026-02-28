@@ -31,11 +31,11 @@ export function Button({
 
   const variants = {
     primary:
-      "bg-accent text-white hover:bg-accent-hover shadow-lg shadow-accent/20 hover:shadow-accent/30",
+      "bg-accent/80 backdrop-blur-md text-white hover:bg-accent shadow-lg shadow-accent/20 hover:shadow-accent/30 border border-white/10 hover:border-white/20",
     outline:
-      "border border-border text-foreground hover:bg-muted/50 hover:border-accent/50",
+      "glass border border-border/50 text-foreground hover:bg-accent/10 hover:border-accent/50 backdrop-blur-md",
     ghost:
-      "text-muted-foreground hover:text-foreground hover:bg-muted/50",
+      "text-muted-foreground hover:text-foreground hover:bg-white/5 backdrop-blur-sm",
   };
 
   const sizes = {

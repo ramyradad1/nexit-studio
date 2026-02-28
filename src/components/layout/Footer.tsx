@@ -5,6 +5,7 @@ import { Link } from "@/i18n/navigation";
 import { MessageCircle, ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import logo from "../../../public/logo.png";
 
 const quickLinks = [
   { key: "home", href: "/" },
@@ -39,7 +40,7 @@ export function Footer() {
                 whileHover={{ scale: 1.1, rotate: 5 }}
               >
                 <Image
-                  src="/logo.png"
+                  src={logo}
                   alt="NexaIT Logo"
                   fill
                   className="object-contain"
