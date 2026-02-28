@@ -4,8 +4,6 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { MessageCircle, ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
-import Image from "next/image";
-import logo from "../../../public/logo.png";
 
 const quickLinks = [
   { key: "home", href: "/" },
@@ -36,15 +34,15 @@ export function Footer() {
           >
             <Link href="/" className="flex items-center gap-2.5 mb-4 group">
               <motion.div
-                className="relative h-9 w-9 rounded-xl overflow-hidden"
+                className="flex-shrink-0"
                 whileHover={{ scale: 1.1, rotate: 5 }}
               >
-                <Image
-                  src={logo}
+                <img
+                  src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/logo.png`}
                   alt="NexaIT Logo"
-                  fill
-                  className="object-contain"
-                  sizes="36px"
+                  width={36}
+                  height={36}
+                  className="rounded-xl"
                 />
               </motion.div>
               <span className="text-lg font-bold tracking-tight">

@@ -6,9 +6,7 @@ import { usePathname, useRouter, Link } from "@/i18n/navigation";
 import { useTheme } from "@/components/providers/ThemeProvider";
 import { Sun, Moon, Menu, X, Globe } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import Image from "next/image";
 import clsx from "clsx";
-import logo from "../../../public/logo.png";
 
 const navItems = [
   { key: "home", href: "/" },
@@ -57,16 +55,16 @@ export function Navbar() {
             {/* Logo */}
             <Link href="/" className="flex items-center gap-2.5 group">
               <motion.div
-                className="relative h-9 w-9 rounded-xl overflow-hidden transition-transform duration-300 group-hover:scale-110"
-                whileHover={{ rotate: [0, -5, 5, 0] }}
+                className="flex-shrink-0"
+                whileHover={{ rotate: [0, -5, 5, 0], scale: 1.1 }}
                 transition={{ duration: 0.5 }}
               >
-                <Image
-                  src={logo}
+                <img
+                  src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/logo.png`}
                   alt="NexaIT Logo"
-                  fill
-                  className="object-contain"
-                  sizes="36px"
+                  width={36}
+                  height={36}
+                  className="rounded-xl"
                 />
               </motion.div>
               <span className="text-lg font-bold tracking-tight">

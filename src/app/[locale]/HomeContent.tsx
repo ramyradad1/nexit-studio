@@ -2,6 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
+import dynamic from "next/dynamic";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { ServiceCard } from "@/components/ui/ServiceCard";
@@ -11,6 +12,11 @@ import { Globe, Smartphone, PenTool, Palette, Search, ShoppingCart, ArrowRight, 
 import { FadeIn } from "@/components/animations/FadeIn";
 import { StaggerContainer, staggerItemVariants } from "@/components/animations/StaggerContainer";
 import { AnimatedCounter } from "@/components/animations/AnimatedCounter";
+
+const HeroScene = dynamic(() => import("@/components/3d/HeroScene").then(m => ({ default: m.HeroScene })), {
+  ssr: false,
+  loading: () => null,
+});
 
 const serviceIcons = [
   <Palette key="ui" size={24} />,
@@ -50,6 +56,9 @@ export default function HomeContent() {
   return (
     <>
       <section className="relative min-h-[90vh] flex items-center overflow-hidden">
+        {/* 3D Background Scene */}
+        <HeroScene />
+
         {/* Animated floating orbs */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <motion.div
@@ -61,11 +70,6 @@ export default function HomeContent() {
             className="absolute -bottom-40 -left-40 w-[500px] h-[500px] rounded-full bg-sky-500/8 blur-[120px]"
             animate={{ y: [0, 30, 0], x: [0, -20, 0], scale: [1, 1.05, 1] }}
             transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-          />
-          <motion.div
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full bg-emerald-500/5 blur-[100px]"
-            animate={{ scale: [1, 1.2, 1], rotate: [0, 90, 0] }}
-            transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
           />
         </div>
 
