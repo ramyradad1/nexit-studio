@@ -40,6 +40,7 @@ export const metadata: Metadata = {
 };
 
 import { routing } from "@/i18n/routing";
+import { setRequestLocale } from "next-intl/server";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -53,6 +54,7 @@ export default async function LocaleLayout({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+  setRequestLocale(locale);
   const isRtl = locale === "ar";
   const messages = (await import(`@/messages/${locale}.json`)).default;
 

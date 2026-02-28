@@ -1,4 +1,4 @@
-import { getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import ProjectDetailClient from "./ProjectDetailClient";
 import { projectData } from "./data";
 
@@ -38,6 +38,7 @@ export default async function ProjectDetailPage({
 }: {
   params: Promise<{ slug: string; locale: string }>;
 }) {
-  const { slug } = await params;
+  const { slug, locale } = await params;
+  setRequestLocale(locale);
   return <ProjectDetailClient slug={slug} />;
 }

@@ -1,4 +1,4 @@
-import { getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import ReviewsContent from "./ReviewsContent";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
@@ -9,5 +9,6 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default async function ReviewsPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  setRequestLocale(locale);
   return <ReviewsContent />;
 }
