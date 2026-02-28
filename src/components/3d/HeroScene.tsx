@@ -27,13 +27,17 @@ const fragmentShader = `
     float dist = length(gl_PointCoord - vec2(0.5));
     if (dist > 0.5) discard;
     
-    float alpha = smoothstep(0.5, 0.05, dist);
-    // Enhanced glowing effect with softer twinkle
-    float twinkle = (sin(time * 0.8 + vPhase) + 1.0) / 2.0;
-    twinkle = 0.4 + 0.6 * (twinkle * twinkle); // Keep stars bright even at minimum
-    float currentOpacity = 0.5 + 0.5 * twinkle;
+    float dist = length(gl_PointCoord - vec2(0.5));
+    if (dist > 0.5) discard;
 
-    gl_FragColor = vec4(vColor, alpha * currentOpacity);
+    // Sharper radial falloff for "pinpoint" realistic stars
+    float alpha = pow(1.0 - dist * 2.0, 3.0);
+
+    // Natural twinkling
+    float twinkle = (sin(time * 0.7 + vPhase) + 1.0) / 2.0;
+    twinkle = 0.6 + 0.4 * pow(twinkle, 2.0);
+
+    gl_FragColor = vec4(vColor, alpha * twinkle);
   }
 `;
 
@@ -59,9 +63,10 @@ function Starfield({ theme }: { theme: "light" | "dark" }) {
 
         const isDark = theme === "dark";
 
-        const c1 = new THREE.Color(isDark ? "#ffffff" : "#0284c7");
-        const c2 = new THREE.Color(isDark ? "#06b6d4" : "#0f766e");
-        const c3 = new THREE.Color(isDark ? "#38bdf8" : "#0369a1");
+        // Realistic star colors: mostly white with subtle tints of blue, yellow, and orange
+        const c1 = new THREE.Color(isDark ? "#ffffff" : "#0284c7"); // Base
+        const c2 = new THREE.Color(isDark ? "#e0f2fe" : "#0369a1"); // Blueish white
+        const c3 = new THREE.Color(isDark ? "#fef9c3" : "#0369a1"); // Yellowish white
 
     for (let i = 0; i < count; i++) {
         const r = 10 + seededRandom() * 40;
@@ -81,8 +86,8 @@ function Starfield({ theme }: { theme: "light" | "dark" }) {
         col[i * 3 + 1] = c.g;
         col[i * 3 + 2] = c.b;
 
-        // Bright glowing stars (sized between 0.8 and 2.5)
-        siz[i] = 0.8 + seededRandom() * 1.7;
+        // Smaller, realistic pinpoint stars
+        siz[i] = 0.4 + seededRandom() * 0.8;
         pha[i] = seededRandom() * Math.PI * 2;
     }
         return [pos, col, siz, pha];
