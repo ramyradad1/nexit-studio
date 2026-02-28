@@ -34,15 +34,18 @@ export function Footer() {
           >
             <Link href="/" className="flex items-center gap-2.5 mb-4 group">
               <motion.div
-                className="flex-shrink-0"
+                className="shrink-0"
                 whileHover={{ scale: 1.1, rotate: 5 }}
               >
                 <img
-                  src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/logo.png`}
+                  src="/nexit-studio/logo.png"
                   alt="NexaIT Logo"
                   width={36}
                   height={36}
                   className="rounded-xl"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src = "/logo.png";
+                  }}
                 />
               </motion.div>
               <span className="text-lg font-bold tracking-tight">

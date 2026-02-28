@@ -36,6 +36,66 @@ const fragmentShader = `
   }
 `;
 
+function LightModeGeometry() {
+    const sphereRef = useRef<THREE.Mesh>(null!);
+    const torusRef = useRef<THREE.Mesh>(null!);
+    const boxRef = useRef<THREE.Mesh>(null!);
+    const torus2Ref = useRef<THREE.Mesh>(null!);
+
+    useFrame((state) => {
+        const t = state.clock.elapsedTime;
+        if (sphereRef.current) {
+            sphereRef.current.rotation.x = t * 0.3;
+            sphereRef.current.rotation.y = t * 0.2;
+        }
+        if (torusRef.current) {
+            torusRef.current.rotation.x = t * 0.4;
+            torusRef.current.rotation.z = t * 0.2;
+        }
+        if (torus2Ref.current) {
+            torus2Ref.current.rotation.x = t * -0.4;
+            torus2Ref.current.rotation.z = t * -0.2;
+        }
+        if (boxRef.current) {
+            boxRef.current.rotation.x = t * 0.5;
+            boxRef.current.rotation.y = t * 0.3;
+        }
+    });
+
+    return (
+        <group>
+            <ambientLight intensity={0.5} />
+            <directionalLight position={[5, 10, 5]} intensity={1.5} color="#ffffff" />
+            <pointLight position={[-5, -3, 2]} intensity={2} color="#0284c7" />
+            <pointLight position={[3, 4, -3]} intensity={1.5} color="#0f766e" />
+
+            {/* Sphere */}
+            <mesh ref={sphereRef} position={[-4, 2, -2]} scale={1.2}>
+                <icosahedronGeometry args={[1, 3]} />
+                <meshStandardMaterial color="#0284c7" roughness={0.3} metalness={0.7} />
+            </mesh>
+
+            {/* Torus */}
+            <mesh ref={torusRef} position={[4, -1, -1]} scale={0.8}>
+                <torusGeometry args={[1, 0.4, 16, 48]} />
+                <meshStandardMaterial color="#0f766e" roughness={0.2} metalness={0.8} />
+            </mesh>
+
+            {/* Second Torus */}
+            <mesh ref={torus2Ref} position={[-2, -3, -3]} scale={0.6}>
+                <torusGeometry args={[1, 0.3, 16, 48]} />
+                <meshStandardMaterial color="#0369a1" roughness={0.4} metalness={0.6} wireframe />
+            </mesh>
+
+            {/* Cube wireframe */}
+            <mesh ref={boxRef} position={[3, 3, -2]} scale={0.9}>
+                <boxGeometry args={[1, 1, 1]} />
+                <meshStandardMaterial color="#0284c7" wireframe />
+            </mesh>
+        </group>
+    );
+}
+
 function createSeededRandom(seed: number) {
     let currentSeed = seed;
     return () => {
@@ -81,8 +141,8 @@ function Starfield({ theme }: { theme: "light" | "dark" }) {
         col[i * 3 + 1] = c.g;
         col[i * 3 + 2] = c.b;
 
-        // Small sizes for subtle stars, slightly larger to be visible
-        siz[i] = 0.05 + seededRandom() * 0.10;
+        // Make stars much larger
+        siz[i] = 0.3 + seededRandom() * 0.6;
         pha[i] = seededRandom() * Math.PI * 2;
     }
         return [pos, col, siz, pha];
@@ -136,7 +196,7 @@ export function HeroScene() {
         style={{ pointerEvents: "none" }}
         gl={{ antialias: true, alpha: true }}
       >
-              <Starfield theme={theme} />
+              {theme === "light" ? <LightModeGeometry /> : <Starfield theme={theme} />}
       </Canvas>
     </div>
   );

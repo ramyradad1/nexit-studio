@@ -60,11 +60,15 @@ export function Navbar() {
                 transition={{ duration: 0.5 }}
               >
                 <img
-                  src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/logo.png`}
+                  src="/nexit-studio/logo.png"
                   alt="NexaIT Logo"
                   width={36}
                   height={36}
                   className="rounded-xl"
+                  onError={(e) => {
+                    // Fallback in case of local dev vs production base path differences
+                    (e.target as HTMLImageElement).src = "/logo.png";
+                  }}
                 />
               </motion.div>
               <span className="text-lg font-bold tracking-tight">
