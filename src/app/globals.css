@@ -23,6 +23,8 @@
   --animate-slide-down: slide-down 0.4s ease-out;
   --animate-scale-in: scale-in 0.3s ease-out;
   --animate-glow: glow-pulse 3s ease-in-out infinite;
+  --animate-shimmer: shimmer 2s linear infinite;
+    --animate-float: float 6s ease-in-out infinite;
 
   @keyframes fade-in {
     from { opacity: 0; }
@@ -44,6 +46,51 @@
     0%, 100% { box-shadow: 0 0 20px rgba(0, 200, 255, 0.15); }
     50% { box-shadow: 0 0 40px rgba(0, 200, 255, 0.3); }
   }
+    @keyframes shimmer {
+      0% {
+        background-position: -200% 0;
+      }
+  
+      100% {
+        background-position: 200% 0;
+      }
+    }
+  
+    @keyframes float {
+  
+      0%,
+      100% {
+        transform: translateY(0px);
+      }
+  
+      50% {
+        transform: translateY(-20px);
+      }
+    }
+  
+    @keyframes gradient-shift {
+      0% {
+        background-position: 0% 50%;
+      }
+  
+      50% {
+        background-position: 100% 50%;
+      }
+  
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+  
+    @keyframes spin-slow {
+      from {
+        transform: rotate(0deg);
+      }
+  
+      to {
+        transform: rotate(360deg);
+      }
+    }
 }
 
 /* ─── Light Theme ─── */
@@ -131,7 +178,7 @@ body {
 @layer components {
   .glass {
     background: var(--glass-bg);
-    -webkit-backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
     backdrop-filter: blur(16px) saturate(180%);
     border: 1px solid var(--glass-border);
   }
@@ -141,6 +188,15 @@ body {
     backdrop-filter: blur(12px) saturate(180%);
     border: 1px solid var(--glass-border);
     border-radius: 1rem;
+    transition: border-color 0.5s ease, box-shadow 0.5s ease;
+    }
+    
+    .glass-card:hover {
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08), 0 0 0 1px var(--glass-border);
+    }
+    
+    .dark .glass-card:hover {
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 60px rgba(56, 189, 248, 0.03);
   }
 }
 

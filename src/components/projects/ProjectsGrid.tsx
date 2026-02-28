@@ -20,13 +20,13 @@ const projectImages = [
   "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80&w=2000",
 ];
 
-const githubLinks = [
-  "https://github.com/ramyradad1/riyadh-residences",
-  "https://github.com/ramyradad1/saudi-coffee-co",
-  "https://github.com/ramyradad1/jeddah-tech-hub",
-  "https://github.com/ramyradad1/vision-2030-tracker",
-  "https://github.com/ramyradad1/fasttrack-logistics",
-  "https://github.com/ramyradad1/edulearn-platform",
+const liveLinks = [
+  "https://ramyradad1.github.io/riyadh-residences",
+  "https://ramyradad1.github.io/saudi-coffee-co",
+  "https://ramyradad1.github.io/jeddah-tech-hub",
+  "https://ramyradad1.github.io/vision-2030-tracker",
+  "https://ramyradad1.github.io/fasttrack-logistics",
+  "https://ramyradad1.github.io/edulearn-platform",
 ];
 
 const categories = ["all", "web", "mobile", "ui", "cloud"] as const;
@@ -47,7 +47,7 @@ export function ProjectsGrid() {
       tags: t(`items.${key}.tags`).split(","),
       category: (t.raw(`items.${key}`) as { category?: string }).category || "web", // fallback to web
       image: projectImages[i],
-      githubUrl: githubLinks[i],
+      liveUrl: liveLinks[i],
     };
   });
 
@@ -114,7 +114,7 @@ export function ProjectsGrid() {
                   tags={project.tags}
                   image={project.image}
                   index={i}
-                  githubUrl={project.githubUrl}
+                  liveUrl={project.liveUrl}
                 />
               </motion.div>
             ))

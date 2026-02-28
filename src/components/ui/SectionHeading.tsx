@@ -16,7 +16,7 @@ export function SectionHeading({ title, subtitle, className, align = "center" }:
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.5, ease: [0.21, 0.47, 0.32, 0.98] }}
       className={clsx(
         "mb-12 lg:mb-16",
         align === "center" && "text-center",
@@ -31,6 +31,14 @@ export function SectionHeading({ title, subtitle, className, align = "center" }:
           {subtitle}
         </p>
       )}
+      {/* Animated accent underline */}
+      <motion.div
+        className={clsx("mt-6 h-1 rounded-full bg-linear-to-r from-accent via-sky-400 to-emerald-400", align === "center" && "mx-auto")}
+        initial={{ width: 0 }}
+        whileInView={{ width: 80 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, delay: 0.3, ease: [0.21, 0.47, 0.32, 0.98] }}
+      />
     </motion.div>
   );
 }

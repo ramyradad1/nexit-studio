@@ -13,17 +13,30 @@ interface ServiceCardProps {
 export function ServiceCard({ icon, title, description, index }: ServiceCardProps) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.4, delay: index * 0.1 }}
-      className="group glass-card p-6 sm:p-8 hover:border-accent/30 transition-all duration-300 cursor-pointer"
+      transition={{ duration: 0.5, delay: index * 0.1, ease: [0.21, 0.47, 0.32, 0.98] }}
+      whileHover={{ y: -8, transition: { duration: 0.3 } }}
+      className="group relative glass-card p-6 sm:p-8 hover:border-accent/40 transition-all duration-500 cursor-pointer overflow-hidden"
     >
-      <div className="mb-5 h-12 w-12 rounded-xl bg-accent/10 flex items-center justify-center text-accent group-hover:bg-accent/20 transition-colors">
+      {/* Animated gradient glow on hover */}
+      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-linear-to-br from-accent/5 via-transparent to-sky-500/5 pointer-events-none" />
+
+      {/* Animated corner accent */}
+      <div className="absolute top-0 right-0 w-20 h-20 bg-linear-to-bl from-accent/10 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:w-24 group-hover:h-24" />
+
+      <motion.div
+        className="relative mb-5 h-14 w-14 rounded-2xl bg-accent/10 flex items-center justify-center text-accent group-hover:bg-accent group-hover:text-white transition-all duration-500 group-hover:shadow-lg group-hover:shadow-accent/25"
+        whileHover={{ rotate: [0, -10, 10, 0], transition: { duration: 0.5 } }}
+      >
         {icon}
-      </div>
-      <h3 className="text-lg font-semibold mb-2">{title}</h3>
-      <p className="text-sm text-muted-foreground leading-relaxed">{description}</p>
+      </motion.div>
+      <h3 className="relative text-lg font-semibold mb-3 group-hover:text-accent transition-colors duration-300">{title}</h3>
+      <p className="relative text-sm text-muted-foreground leading-relaxed">{description}</p>
+
+      {/* Bottom accent line */}
+      <div className="absolute bottom-0 left-0 h-0.5 w-0 bg-linear-to-r from-accent to-sky-400 group-hover:w-full transition-all duration-700 ease-out" />
     </motion.div>
   );
 }

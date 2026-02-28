@@ -5,13 +5,13 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
-import { ArrowLeft, ArrowRight, Calendar, Users, Tag, Github } from "lucide-react";
+import { ArrowLeft, ArrowRight, Calendar, Users, Tag, Globe } from "lucide-react";
 
 export default function ProjectContent({
   project,
   projectKey,
 }: {
-  project: { image: string; tags: string[]; year: string; client: string; githubUrl?: string };
+    project: { image: string; tags: string[]; year: string; client: string; liveUrl?: string };
   projectKey: string;
 }) {
   const t = useTranslations("Projects");
@@ -107,10 +107,10 @@ export default function ProjectContent({
             </div>
 
             <div className="mt-auto flex flex-col sm:flex-row gap-4">
-              {project.githubUrl && (
-                <Button href={project.githubUrl} variant="outline" size="lg" className="w-full sm:w-auto" external>
-                  <Github size={16} className="mr-2" />
-                  View Code
+              {project.liveUrl && (
+                <Button href={project.liveUrl} variant="outline" size="lg" className="w-full sm:w-auto" external>
+                  <Globe size={16} className="mr-2" />
+                  Visit Website
                 </Button>
               )}
               <Button href="/contact" size="lg" className="w-full sm:w-auto">
