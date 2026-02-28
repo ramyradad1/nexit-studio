@@ -1,3 +1,4 @@
+import "../globals.css";
 import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
 import { Inter, IBM_Plex_Sans_Arabic } from "next/font/google";

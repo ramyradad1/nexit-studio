@@ -1,8 +1,5 @@
-import { useTranslations } from "next-intl";
 import { getTranslations } from "next-intl/server";
-import { Container } from "@/components/ui/Container";
-import { SectionHeading } from "@/components/ui/SectionHeading";
-import { ProjectsGrid } from "@/components/projects/ProjectsGrid";
+import ProjectsContent from "./ProjectsContent";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -10,15 +7,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return { title: t("title"), description: t("description") };
 }
 
-export default function ProjectsPage() {
-  const t = useTranslations("Projects");
-
-  return (
-    <section className="py-20 lg:py-28">
-      <Container>
-        <SectionHeading title={t("heading")} subtitle={t("subtitle")} />
-        <ProjectsGrid />
-      </Container>
-    </section>
-  );
+export default async function ProjectsPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  return <ProjectsContent />;
 }

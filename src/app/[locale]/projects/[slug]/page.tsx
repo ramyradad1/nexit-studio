@@ -2,8 +2,18 @@ import { getTranslations } from "next-intl/server";
 import ProjectDetailClient from "./ProjectDetailClient";
 import { projectData } from "./data";
 
+import { routing } from "@/i18n/routing";
+
 export function generateStaticParams() {
-  return Object.keys(projectData).map((slug) => ({ slug }));
+  const params: { locale: string; slug: string }[] = [];
+
+  routing.locales.forEach((locale) => {
+    Object.keys(projectData).forEach((slug) => {
+      params.push({ locale, slug });
+    });
+  });
+
+  return params;
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; slug: string }> }) {
