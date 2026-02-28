@@ -28,7 +28,8 @@ const fragmentShader = `
     if (dist > 0.5) discard;
     
     float alpha = smoothstep(0.5, 0.1, dist);
-    float twinkle = (sin(time * 2.0 + vPhase) + 1.0) / 2.0;
+    // Slower twinkle effect
+    float twinkle = (sin(time * 0.5 + vPhase) + 1.0) / 2.0;
     float currentOpacity = 0.1 + 0.9 * twinkle;
 
     gl_FragColor = vec4(vColor, alpha * currentOpacity);
@@ -57,10 +58,10 @@ function Starfield({ theme }: { theme: "light" | "dark" }) {
         const isDark = theme === "dark";
 
         // In dark mode: cyan, sky, and white stars.
-        // In light mode: cyan, sky, and emerald stars.
-        const c1 = new THREE.Color(isDark ? "#ffffff" : "#0ea5e9");
-        const c2 = new THREE.Color("#06b6d4");
-        const c3 = new THREE.Color(isDark ? "#38bdf8" : "#10b981");
+        // In light mode: much darker blues and teals to be visible on white.
+        const c1 = new THREE.Color(isDark ? "#ffffff" : "#0284c7"); // Bright white vs Dark Sky Blue
+        const c2 = new THREE.Color(isDark ? "#06b6d4" : "#0f766e"); // Cyan vs Dark Teal
+        const c3 = new THREE.Color(isDark ? "#38bdf8" : "#0369a1"); // Light Sky vs Dark Blue
 
     for (let i = 0; i < count; i++) {
         const r = 10 + seededRandom() * 40;
@@ -80,8 +81,8 @@ function Starfield({ theme }: { theme: "light" | "dark" }) {
         col[i * 3 + 1] = c.g;
         col[i * 3 + 2] = c.b;
 
-        // Small sizes for subtle stars
-        siz[i] = 0.03 + seededRandom() * 0.08;
+        // Small sizes for subtle stars, slightly larger to be visible
+        siz[i] = 0.05 + seededRandom() * 0.10;
         pha[i] = seededRandom() * Math.PI * 2;
     }
         return [pos, col, siz, pha];
