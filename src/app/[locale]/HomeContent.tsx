@@ -100,35 +100,38 @@ export default function HomeContent() {
             </FadeIn>
 
             <FadeIn delay={0.2}>
-              <motion.h1 
-                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1]"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: [0, -5, 0] }}
+              <motion.div
+                animate={{ y: [0, -10, 0] }}
                 transition={{
-                  opacity: { duration: 0.8, delay: 0.3 },
-                  y: { duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1.1 }
+                  duration: 6,
+                  repeat: Infinity,
+                  ease: "easeInOut",
                 }}
               >
-                {t("title")}{" "}
-                <span className="bg-linear-to-r from-accent via-sky-400 to-emerald-400 bg-clip-text text-transparent bg-size-[200%_auto] animate-[gradient-shift_3s_ease-in-out_infinite]">
-                  {t("titleHighlight")}
-                </span>
-                <br />
-                {t("titleEnd")}
-              </motion.h1>
+                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1]">
+                  {t("title")}{" "}
+                  <span className="bg-linear-to-r from-accent via-sky-400 to-emerald-400 bg-clip-text text-transparent bg-size-[200%_auto] animate-[gradient-shift_3s_ease-in-out_infinite]">
+                    {t("titleHighlight")}
+                  </span>
+                  <br />
+                  {t("titleEnd")}
+                </h1>
+              </motion.div>
             </FadeIn>
             <FadeIn delay={0.3}>
-              <motion.p
-                className="mt-6 text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed"
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: [0, -3, 0] }}
+              <motion.div
+                animate={{ y: [0, -6, 0] }}
                 transition={{
-                  opacity: { duration: 0.7, delay: 0.5 },
-                  y: { duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1.2 }
+                  duration: 5.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: 0.5,
                 }}
               >
-                {t("subtitle")}
-              </motion.p>
+                <p className="mt-6 text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+                  {t("subtitle")}
+                </p>
+              </motion.div>
             </FadeIn>
 
             <FadeIn delay={0.4}>
