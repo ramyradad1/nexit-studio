@@ -40,6 +40,20 @@ const projectData: Record<
     client: "Ministry of Planning",
     githubUrl: "https://github.com/nexait-studio/vision-2030-tracker",
   },
+  logistics: {
+    image: "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?auto=format&fit=crop&q=80&w=2000",
+    tags: ["Next.js", "PostgreSQL", "Maps"],
+    year: "2025",
+    client: "FastTrack Logistics",
+    githubUrl: "https://github.com/nexait-studio/fasttrack-logistics",
+  },
+  education: {
+    image: "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80&w=2000",
+    tags: ["React Native", "Node.js"],
+    year: "2024",
+    client: "EduLearn Academy",
+    githubUrl: "https://github.com/nexait-studio/edulearn-platform",
+  },
 };
 
 const slugs = Object.keys(projectData);
@@ -70,7 +84,7 @@ export default function ProjectDetailPage({
   }
 
   /* Try to get the translation key matching the slug */
-  const projectKey = slug as "realestate" | "coffee" | "agency" | "vision";
+  const projectKey = slug as "realestate" | "coffee" | "agency" | "vision" | "logistics" | "education";
 
   return (
     <section className="py-20 lg:py-28">

@@ -138,6 +138,26 @@
         "name": "Omar Yusuf",
         "role": "Founder, LogiTrack",
         "quote": "From initial concept to deployment, NexaIT Studio was an incredible partner. Highly recommended."
+      },
+      "review5": {
+        "name": "David Smith",
+        "role": "Director, GlobalRetail",
+        "quote": "The team's ability to simplify complex workflows into elegant interfaces is truly remarkable."
+      },
+      "review6": {
+        "name": "Nadia Al-Mutairi",
+        "role": "Marketing Head, FutureVision",
+        "quote": "Our new website saw a 40% increase in conversion rate within the first month of launch."
+      },
+      "review7": {
+        "name": "Michael Chang",
+        "role": "CTO, Finova Tech",
+        "quote": "Their cloud infrastructure setup saved us thousands in hosting costs while improving performance."
+      },
+      "review8": {
+        "name": "Laila Hassan",
+        "role": "Operations Manager, MedCare",
+        "quote": "A truly professional and dependable agency. They delivered exactly what they promised on time."
       }
     }
   },
@@ -201,6 +221,32 @@
       "locationLabel": "Location",
       "location": "Riyadh, Saudi Arabia",
       "whatsapp": "Chat on WhatsApp"
+    }
+  },
+  "FAQ": {
+    "heading": "Frequently Asked Questions",
+    "subtitle": "Find answers to our most common queries.",
+    "items": {
+      "q1": {
+        "question": "What is your typical project timeline?",
+        "answer": "Project timelines vary depending on scope and complexity. A standard corporate website typically takes 4-6 weeks, while complex web applications may take 3-6 months. We provide a detailed timeline during the proposal phase."
+      },
+      "q2": {
+        "question": "Do you provide ongoing support and maintenance?",
+        "answer": "Yes, we offer comprehensive support and maintenance packages to ensure your digital products remain secure, up-to-date, and perform optimally long after the initial launch."
+      },
+      "q3": {
+        "question": "What technologies do you specialize in?",
+        "answer": "We specialize in modern frontend frameworks like React and Next.js, versatile backends using Node.js and PostgreSQL, and robust cloud infrastructure on AWS, Vercel, and Supabase."
+      },
+      "q4": {
+        "question": "How does your pricing work?",
+        "answer": "Our pricing is project-based, tailored to your specific requirements. We conduct discovery sessions to understand your needs fully before providing a transparent, detailed proposal."
+      },
+      "q5": {
+        "question": "Can you help with digital strategy and SEO?",
+        "answer": "Absolutely. Our services go beyond coding; we incorporate SEO best practices from day one and offer strategic consulting to ensure your product achieves maximum visibility and success."
+      }
     }
   },
   "Footer": {
