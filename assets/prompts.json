@@ -1,0 +1,44 @@
+{
+  "project": "NexaIT Studio",
+  "style": "2026 Creative Premium Studio, Modern, Glassmorphism, Clean Spacing, High-end",
+  "prompts": {
+    "hero": [
+      {
+        "description": "Abstract futuristic dark background with subtle neon blue and purple gradients, glassmorphism elements, clean layout suitable for a hero section.",
+        "aspect_ratio": "16:9"
+      }
+    ],
+    "projects": [
+      {
+        "slug": "realestate",
+        "description": "A high-end modern luxury real estate website interface mock-up on a sleek monitor, dark mode, high contrast.",
+        "aspect_ratio": "4:3"
+      },
+      {
+        "slug": "coffee",
+        "description": "Minimalist premium coffee roaster ecommerce storefront UI, warm earth tones, clean photography of coffee beans.",
+        "aspect_ratio": "4:3"
+      },
+      {
+        "slug": "agency",
+        "description": "Creative digital agency portfolio with bold typography, abstract 3D shapes, vibrant neon colors on dark background.",
+        "aspect_ratio": "4:3"
+      },
+      {
+        "slug": "vision",
+        "description": "Data visualization dashboard with beautiful modern charts, glowing lines, dark mode, government or corporate tech style.",
+        "aspect_ratio": "4:3"
+      },
+      {
+        "slug": "logistics",
+        "description": "Modern logistics tracking dashboard on a tablet, showing a global map with glowing paths, futuristic teal and dark blue theme.",
+        "aspect_ratio": "4:3"
+      },
+      {
+        "slug": "education",
+        "description": "Premium e-learning platform interface displayed on a laptop, showing video courses and modern UI cards, clean, bright accents.",
+        "aspect_ratio": "4:3"
+      }
+    ]
+  }
+}

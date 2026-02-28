@@ -1,88 +1,86 @@
-# NexaIT Studio — Portfolio Website (Next.js + Tailwind + Supabase)
+# NexaIT Studio
 
-A modern, bilingual (EN/AR) portfolio website for **NexaIT Studio** showcasing IT services, web/app development, projects, and customer reviews — with a working Contact form that stores leads in **Supabase**.  
-Deployment is optimized for **GitHub + Vercel**.
+Premium digital solutions portfolio website built with modern 2026 design system aesthetics.
 
----
+## Features
 
-## ✨ Features
+- **Next.js 15+ App Router** with React 19
+- **i18n Support**: Full Arabic (RTL) and English (LTR) utilizing `next-intl`
+- **Modern UI**: Tailwind CSS v4, Framer Motion animations, Glassmorphism, and responsive design
+- **Dark/Light Mode**: Persisted theme toggle (system preference fallback)
+- **Dynamic Content**: CMS-ready structures for projects, reviews, and services
+- **Contact & Lead Gen**: Supabase integration for contact form submissions with localStorage fallback
+- **SEO Optimized**: Dynamic `sitemap.xml`, `robots.txt`, and per-page metadata
 
-- **Next.js App Router + TypeScript**
-- **TailwindCSS** UI (modern, responsive)
-- **Bilingual i18n:** English (LTR) + Arabic (RTL)
-- **Light/Dark Theme Toggle** (persisted)
-- Pages:
-  - `/` Home
-  - `/services`
-  - `/projects`
-  - `/projects/[slug]`
-  - `/reviews`
-  - `/about`
-  - `/contact`
-- **Floating WhatsApp CTA** on all pages
-- **Contact Form → Supabase** (`leads` table)
-- SEO basics:
-  - per-page metadata
-  - `robots.txt` + `sitemap.xml`
+## Tech Stack
 
----
+- [Next.js](https://nextjs.org/)
+- [React](https://react.dev/)
+- [Tailwind CSS v4](https://tailwindcss.com/)
+- [Framer Motion](https://www.framer.com/motion/)
+- [Supabase](https://supabase.com/)
+- [Lucide Icons](https://lucide.dev/)
+- [next-intl](https://next-intl-docs.vercel.app/)
+- [Sonner](https://sonner.emilkowal.ski/)
 
-## 🧰 Tech Stack
+## Prerequisites
 
-- **Frontend:** Next.js (App Router), TypeScript, TailwindCSS
-- **Backend/DB:** Supabase (Postgres + RLS)
-- **Hosting:** Vercel
-- **Repo:** GitHub
+- Node.js 18+
+- npm or pnpm
+- Supabase Project (for backend lead generation)
 
----
+## Environment Variables
 
-## ✅ Prerequisites
+Create a `.env.local` file in the root directory:
 
-- Node.js **18+** (recommended 20+)
-- A Supabase project (free tier is OK)
-
----
-
-## 🚀 Getting Started (Local)
-
-1) **Clone**
 ```bash
-git clone <YOUR_GITHUB_REPO_URL>
-cd <PROJECT_FOLDER>
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+```
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+### Supabase Setup
 
-## Getting Started
+To use the contact form, ensure you create a `leads` table in your Supabase database with the following structure:
 
-First, run the development server:
+- `id` (uuid, primary key)
+- `name` (text)
+- `email` (text, nullable)
+- `phone` (text)
+- `service` (text)
+- `message` (text)
+- `created_at` (timestamp, default now())
+
+Disable RLS or configure appropriate insert policies for anonymous users.
+
+## Local Development
+
+1. Install dependencies:
+
+```bash
+npm install
+```
+
+1. Start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1. Open [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Production Build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+To build the project for production:
 
-## Learn More
+```bash
+npm run build
+npm start
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `src/app`: Next.js App Router and pages
+- `src/components`: Reusable UI components and layouts
+- `src/i18n`: next-intl configuration
+- `src/messages`: Translation dictionaries (en.json, ar.json)
+- `src/lib`: Utilities and Supabase client

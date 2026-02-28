@@ -9,9 +9,11 @@ import { Button } from "@/components/ui/Button";
 import { Mail, Phone, MapPin, MessageCircle, Send, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/lib/supabase";
+import { FaqAccordion } from "@/components/ui/FaqAccordion";
 
 export default function ContactPage() {
   const t = useTranslations("Contact");
+  const faqT = useTranslations("FAQ");
 
   const [formData, setFormData] = useState({
     name: "",
@@ -59,7 +61,7 @@ export default function ContactPage() {
 
         toast.success(t("form.success"));
         setFormData({ name: "", email: "", phone: "", service: "", message: "" });
-      } catch (localErr) {
+      } catch {
         toast.error(t("form.error"));
       }
     } finally {
@@ -225,6 +227,19 @@ export default function ContactPage() {
           </motion.div>
         </div>
       </Container>
+
+      {/* FAQ Section */}
+      <div className="mt-32">
+        <Container>
+          <SectionHeading title={faqT("heading")} subtitle={faqT("subtitle")} />
+          <FaqAccordion
+            items={["q1", "q2", "q3", "q4", "q5"].map(key => ({
+              question: faqT(`items.${key}.question`),
+              answer: faqT(`items.${key}.answer`)
+            }))}
+          />
+        </Container>
+      </div>
     </section>
   );
 }
