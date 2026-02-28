@@ -5,6 +5,9 @@ import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ServiceCard } from "@/components/ui/ServiceCard";
 import { Globe, Smartphone, Cloud, Palette, Brain, Lightbulb } from "lucide-react";
+import { FadeIn } from "@/components/animations/FadeIn";
+import { StaggerContainer, staggerItemVariants } from "@/components/animations/StaggerContainer";
+import { motion } from "framer-motion";
 
 const serviceIcons = [
   <Globe key="web" size={24} />,
@@ -21,19 +24,58 @@ export default function ServicesContent() {
   const t = useTranslations("Services");
 
   return (
-    <section className="py-20 lg:py-28">
+    <section className="py-20 lg:py-28 overflow-hidden">
       <Container>
-        <SectionHeading title={t("heading")} subtitle={t("subtitle")} />
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <FadeIn>
+          <SectionHeading title={t("heading")} subtitle={t("subtitle")} />
+        </FadeIn>
+        <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {serviceKeys.map((key, i) => (
-            <ServiceCard
-              key={key}
-              icon={serviceIcons[i]}
-              title={t(`${key}.title`)}
-              description={t(`${key}.description`)}
-              index={i}
-            />
+            <motion.div key={key} variants={staggerItemVariants}>
+              <ServiceCard
+                icon={serviceIcons[i]}
+                title={t(`${key}.title`)}
+                description={t(`${key}.description`)}
+                index={i}
+              />
+            </motion.div>
           ))}
+        </StaggerContainer>
+
+        {/* Infinite Marquee Section */}
+        <div className="mt-24 pt-16 border-t border-border/50">
+          <FadeIn>
+            <h3 className="text-xl md:text-2xl font-semibold text-center mb-10 text-muted-foreground">{t("techStack") || "Powered by Next-Gen Technologies"}</h3>
+          </FadeIn>
+
+          <div className="relative flex overflow-x-hidden group">
+            <div className="absolute top-0 left-0 w-32 h-full bg-linear-to-r from-background to-transparent z-10 pointer-events-none" />
+            <div className="absolute top-0 right-0 w-32 h-full bg-linear-to-l from-background to-transparent z-10 pointer-events-none" />
+
+            <motion.div
+              className="flex whitespace-nowrap gap-12 sm:gap-16 py-4 px-8 items-center"
+              animate={{ x: [0, -1000] }}
+              transition={{
+                repeat: Infinity,
+                repeatType: "loop",
+                duration: 20,
+                ease: "linear",
+              }}
+            >
+              {/* Duplicate the list to create the seamless loop effect */}
+              {[...Array(2)].map((_, arrayIndex) => (
+                <div key={arrayIndex} className="flex gap-12 sm:gap-16 items-center">
+                  <span className="text-2xl sm:text-3xl font-bold text-accent/20">Next.js 15</span>
+                  <span className="text-2xl sm:text-3xl font-bold text-accent/20">React 19</span>
+                  <span className="text-2xl sm:text-3xl font-bold text-accent/20">TypeScript</span>
+                  <span className="text-2xl sm:text-3xl font-bold text-accent/20">Tailwind CSS 4</span>
+                  <span className="text-2xl sm:text-3xl font-bold text-accent/20">Supabase</span>
+                  <span className="text-2xl sm:text-3xl font-bold text-accent/20">Framer Motion</span>
+                  <span className="text-2xl sm:text-3xl font-bold text-accent/20">Docker</span>
+                </div>
+              ))}
+            </motion.div>
+          </div>
         </div>
       </Container>
     </section>

@@ -2,12 +2,13 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { motion } from "framer-motion";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/Button";
 import { Mail, Phone, MapPin, MessageCircle, Send, Loader2 } from "lucide-react";
 import { toast } from "sonner";
+import { FadeIn } from "@/components/animations/FadeIn";
+import { StaggerContainer } from "@/components/animations/StaggerContainer";
 import { supabase } from "@/lib/supabase";
 import { FaqAccordion } from "@/components/ui/FaqAccordion";
 
@@ -71,15 +72,11 @@ export default function ContactContent() {
   return (
     <section className="py-20 lg:py-28">
       <Container>
-        <SectionHeading title={t("heading")} subtitle={t("subtitle")} />
+        <FadeIn>
+          <SectionHeading title={t("heading")} subtitle={t("subtitle")} />
+        </FadeIn>
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-16">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="lg:col-span-3"
-          >
+          <FadeIn direction="right" className="lg:col-span-3">
             <form onSubmit={handleSubmit} className="space-y-5 glass-card p-6 sm:p-8">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
@@ -116,8 +113,8 @@ export default function ContactContent() {
                 {isSubmitting ? <><Loader2 size={16} className="animate-spin mr-2" />{t("form.sending")}</> : <><Send size={16} className="mr-2" />{t("form.send")}</>}
               </Button>
             </form>
-          </motion.div>
-          <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.15 }} className="lg:col-span-2 space-y-6">
+          </FadeIn>
+          <FadeIn direction="left" delay={0.15} className="lg:col-span-2 space-y-6">
             {[{ icon: <Mail size={20} />, label: t("info.emailLabel"), value: t("info.email") }, { icon: <Phone size={20} />, label: t("info.phoneLabel"), value: t("info.phone") }, { icon: <MapPin size={20} />, label: t("info.locationLabel"), value: t("info.location") }].map((item, i) => (
               <div key={i} className="glass-card p-5 flex items-start gap-4">
                 <div className="h-10 w-10 rounded-xl bg-accent/10 flex items-center justify-center text-accent shrink-0">{item.icon}</div>
@@ -128,13 +125,17 @@ export default function ContactContent() {
               <div className="h-10 w-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-500 shrink-0 group-hover:bg-emerald-500/20 transition-colors"><MessageCircle size={20} /></div>
               <div><p className="text-sm font-semibold text-emerald-500">{t("info.whatsapp")}</p><p className="text-xs text-muted-foreground">+20 103 076 9960</p></div>
             </a>
-          </motion.div>
+          </FadeIn>
         </div>
       </Container>
       <div className="mt-32">
         <Container>
-          <SectionHeading title={faqT("heading")} subtitle={faqT("subtitle")} />
-          <FaqAccordion items={["q1", "q2", "q3", "q4", "q5"].map(key => ({ question: faqT(`items.${key}.question`), answer: faqT(`items.${key}.answer`) }))} />
+          <FadeIn>
+            <SectionHeading title={faqT("heading")} subtitle={faqT("subtitle")} />
+          </FadeIn>
+          <StaggerContainer>
+            <FaqAccordion items={["q1", "q2", "q3", "q4", "q5"].map(key => ({ question: faqT(`items.${key}.question`), answer: faqT(`items.${key}.answer`) }))} />
+          </StaggerContainer>
         </Container>
       </div>
     </section>

@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { Search } from "lucide-react";
 import { ProjectCard } from "@/components/ui/ProjectCard";
+import { FadeIn } from "@/components/animations/FadeIn";
 
 type ProjectId = "realestate" | "coffee" | "agency" | "vision" | "logistics" | "education";
 
@@ -60,7 +61,7 @@ export function ProjectsGrid() {
   return (
     <div className="space-y-10">
       {/* Controls: Search & Filters */}
-      <div className="flex flex-col md:flex-row gap-6 items-center justify-between">
+      <FadeIn className="flex flex-col md:flex-row gap-6 items-center justify-between">
         {/* Filter Tabs */}
         <div className="flex flex-wrap items-center gap-2 p-1.5 bg-muted/30 rounded-2xl glass-card">
           {categories.map((cat) => (
@@ -91,7 +92,7 @@ export function ProjectsGrid() {
             className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-muted/50 border border-border text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all"
           />
         </div>
-      </div>
+      </FadeIn>
 
       {/* Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">

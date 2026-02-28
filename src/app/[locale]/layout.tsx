@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { FloatingWhatsApp } from "@/components/ui/FloatingWhatsApp";
+import { PageTransition } from "@/components/animations/PageTransition";
 import { Toaster } from "sonner";
 
 const inter = Inter({
@@ -84,7 +85,9 @@ export default async function LocaleLayout({
           <ThemeProvider>
             <div className="flex min-h-screen flex-col">
               <Navbar />
-              <main className="flex-1">{children}</main>
+              <main className="flex-1 w-full flex flex-col items-center justify-start overflow-hidden">
+                <PageTransition>{children}</PageTransition>
+              </main>
               <Footer />
               <FloatingWhatsApp />
               <Toaster position="bottom-right" richColors />

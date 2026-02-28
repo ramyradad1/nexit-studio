@@ -24,9 +24,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     return { title: "Project Not Found" };
   }
 
-  // @ts-ignore - Dynamic key usage
   const title = t(`${slug}.title`);
-  // @ts-ignore
   const description = t(`${slug}.description`);
 
   return {

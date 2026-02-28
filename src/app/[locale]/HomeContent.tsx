@@ -7,7 +7,10 @@ import { Button } from "@/components/ui/Button";
 import { ServiceCard } from "@/components/ui/ServiceCard";
 import { ProjectCard } from "@/components/ui/ProjectCard";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { Globe, Smartphone, Cloud, Palette, Brain, Lightbulb, ArrowRight } from "lucide-react";
+import { Globe, Smartphone, Cloud, Palette, Brain, Lightbulb, ArrowRight, Star } from "lucide-react";
+import { FadeIn } from "@/components/animations/FadeIn";
+import { StaggerContainer, staggerItemVariants } from "@/components/animations/StaggerContainer";
+import { AnimatedCounter } from "@/components/animations/AnimatedCounter";
 
 const serviceIcons = [
   <Globe key="web" size={24} />,
@@ -54,88 +57,113 @@ export default function HomeContent() {
         <div className="absolute inset-0 opacity-[0.02] grid-pattern-overlay" />
         <Container className="relative py-20 lg:py-32">
           <div className="max-w-4xl mx-auto text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="mb-8 inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-accent/20 bg-accent/5 text-accent text-sm"
-            >
-              <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
-              {t("badge")}
-            </motion.div>
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1]"
-            >
-              {t("title")}{" "}
-              <span className="bg-linear-to-r from-accent via-sky-400 to-accent bg-clip-text text-transparent bg-size-[200%_auto] animate-[gradient-shift_3s_ease-in-out_infinite]">
-                {t("titleHighlight")}
-              </span>
-              <br />
-              {t("titleEnd")}
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="mt-6 text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed"
-            >
-              {t("subtitle")}
-            </motion.p>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
-            >
-              <Button href="/contact" size="lg">
-                {t("cta")}
-                <ArrowRight size={18} />
-              </Button>
-              <Button href="/projects" variant="outline" size="lg">
-                {t("ctaSecondary")}
-              </Button>
-            </motion.div>
+            <FadeIn delay={0.1}>
+              <motion.div
+                className="mb-8 inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-accent/20 bg-accent/5 text-accent text-sm"
+              >
+                <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
+                {t("badge")}
+              </motion.div>
+            </FadeIn>
+
+            <FadeIn delay={0.2}>
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1]">
+                {t("title")}{" "}
+                <span className="bg-linear-to-r from-accent via-sky-400 to-accent bg-clip-text text-transparent bg-size-[200%_auto] animate-[gradient-shift_3s_ease-in-out_infinite]">
+                  {t("titleHighlight")}
+                </span>
+                <br />
+                {t("titleEnd")}
+              </h1>
+            </FadeIn>
+
+            <FadeIn delay={0.3}>
+              <p className="mt-6 text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+                {t("subtitle")}
+              </p>
+            </FadeIn>
+
+            <FadeIn delay={0.4}>
+              <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+                <Button href="/contact" size="lg" className="hover:scale-105 transition-transform duration-300">
+                  {t("cta")}
+                  <ArrowRight size={18} />
+                </Button>
+                <Button href="/projects" variant="outline" size="lg" className="hover:scale-105 transition-transform duration-300">
+                  {t("ctaSecondary")}
+                </Button>
+              </div>
+            </FadeIn>
+
+            {/* Stats Row */}
+            <FadeIn delay={0.6} className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-border/50 pt-10">
+              <div className="flex flex-col items-center gap-2">
+                <AnimatedCounter to={50} suffix="+" className="text-3xl md:text-4xl font-bold text-foreground" />
+                <span className="text-sm text-muted-foreground font-medium">Projects Delivered</span>
+              </div>
+              <div className="flex flex-col items-center gap-2">
+                <AnimatedCounter to={5} suffix="/5" className="text-3xl md:text-4xl font-bold text-foreground" />
+                <span className="text-sm text-muted-foreground font-medium flex items-center gap-1">
+                  Average Rating <Star size={14} className="text-amber-500 fill-amber-500" />
+                </span>
+              </div>
+              <div className="flex flex-col items-center gap-2">
+                <AnimatedCounter to={99} suffix="%" className="text-3xl md:text-4xl font-bold text-foreground" />
+                <span className="text-sm text-muted-foreground font-medium">Client Satisfaction</span>
+              </div>
+              <div className="flex flex-col items-center gap-2">
+                <AnimatedCounter to={24} suffix="/7" className="text-3xl md:text-4xl font-bold text-foreground" />
+                <span className="text-sm text-muted-foreground font-medium">Support Available</span>
+              </div>
+            </FadeIn>
           </div>
         </Container>
       </section>
       <section className="py-20 lg:py-28">
         <Container>
-          <SectionHeading title={st("heading")} subtitle={st("subtitle")} />
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <FadeIn>
+            <SectionHeading title={st("heading")} subtitle={st("subtitle")} />
+          </FadeIn>
+          <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {serviceKeys.map((key, i) => (
-              <ServiceCard
-                key={key}
-                icon={serviceIcons[i]}
-                title={st(`${key}.title`)}
-                description={st(`${key}.description`)}
-                index={i}
-              />
+              <motion.div key={key} variants={staggerItemVariants}>
+                <ServiceCard
+                  icon={serviceIcons[i]}
+                  title={st(`${key}.title`)}
+                  description={st(`${key}.description`)}
+                  index={i}
+                />
+              </motion.div>
             ))}
-          </div>
+          </StaggerContainer>
         </Container>
       </section>
       <section className="py-20 lg:py-28 bg-muted/20">
         <Container>
-          <SectionHeading title={pt("heading")} subtitle={pt("subtitle")} />
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+          <FadeIn>
+            <SectionHeading title={pt("heading")} subtitle={pt("subtitle")} />
+          </FadeIn>
+          <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
             {projectKeys.map((key, i) => (
-              <ProjectCard
-                key={key}
-                slug={key}
-                title={pt(`items.${key}.title`)}
-                description={pt(`items.${key}.description`)}
-                tags={pt(`items.${key}.tags`).split(",")}
-                image={projectImages[i]}
-                index={i}
-                githubUrl={githubLinks[i]}
-              />
+              <motion.div key={key} variants={staggerItemVariants}>
+                <ProjectCard
+                  slug={key}
+                  title={pt(`items.${key}.title`)}
+                  description={pt(`items.${key}.description`)}
+                  tags={pt(`items.${key}.tags`).split(",")}
+                  image={projectImages[i]}
+                  index={i}
+                  githubUrl={githubLinks[i]}
+                />
+              </motion.div>
             ))}
-          </div>
-          <div className="mt-12 text-center">
-            <Button href="/projects" variant="outline">
+          </StaggerContainer>
+          <FadeIn delay={0.4} className="mt-12 text-center">
+            <Button href="/projects" variant="outline" className="hover:scale-105 transition-transform duration-300">
               {pt("viewProject")}
               <ArrowRight size={16} />
             </Button>
-          </div>
+          </FadeIn>
         </Container>
       </section>
     </>

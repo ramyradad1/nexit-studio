@@ -8,6 +8,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 }
 
 export default async function ContactPage({ params }: { params: Promise<{ locale: string }> }) {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { locale } = await params;
   return <ContactContent />;
 }

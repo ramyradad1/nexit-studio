@@ -4,7 +4,9 @@ import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { AnimatedCounter } from "@/components/ui/AnimatedCounter";
+import { AnimatedCounter } from "@/components/animations/AnimatedCounter";
+import { FadeIn } from "@/components/animations/FadeIn";
+import { StaggerContainer, staggerItemVariants } from "@/components/animations/StaggerContainer";
 import { Target, Eye, Sparkles, Users, Rocket } from "lucide-react";
 
 const valueIcons = [<Sparkles key="i" size={22} />, <Target key="q" size={22} />, <Users key="c" size={22} />, <Rocket key="im" size={22} />];
@@ -26,14 +28,11 @@ export default function AboutContent() {
         <SectionHeading title={t("heading")} subtitle={t("subtitle")} />
 
         {/* Mission & Vision */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16 lg:mb-24">
+        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16 lg:mb-24">
           {(["mission", "vision"] as const).map((key, i) => (
             <motion.div
               key={key}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
+              variants={staggerItemVariants}
               className="glass-card p-8"
             >
               <div className="mb-4 h-12 w-12 rounded-xl bg-accent/10 flex items-center justify-center text-accent">
@@ -43,26 +42,32 @@ export default function AboutContent() {
               <p className="text-muted-foreground leading-relaxed">{t(`${key}.description`)}</p>
             </motion.div>
           ))}
-        </div>
+        </StaggerContainer>
 
         {/* Stats */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-16 lg:mb-24">
+        <FadeIn className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-16 lg:mb-24">
           {stats.map((stat, i) => (
-            <AnimatedCounter key={i} value={stat.value} label={stat.label} />
+            <div key={i} className="flex flex-col items-center gap-2 p-6 glass-card rounded-2xl text-center">
+              <AnimatedCounter
+                to={parseInt(stat.value.replace(/[^0-9]/g, '')) || 0}
+                suffix={stat.value.replace(/[0-9]/g, '')}
+                className="text-4xl md:text-5xl font-bold text-foreground"
+              />
+              <span className="text-sm text-muted-foreground font-medium">{stat.label}</span>
+            </div>
           ))}
-        </div>
+        </FadeIn>
 
         {/* Values */}
         <div>
-          <h3 className="text-2xl font-bold text-center mb-10">{t("values.title")}</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <FadeIn>
+            <h3 className="text-2xl font-bold text-center mb-10">{t("values.title")}</h3>
+          </FadeIn>
+          <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {valueKeys.map((key, i) => (
               <motion.div
                 key={key}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.1 }}
+                variants={staggerItemVariants}
                 className="glass-card p-6 text-center"
               >
                 <div className="mx-auto mb-4 h-12 w-12 rounded-xl bg-accent/10 flex items-center justify-center text-accent">
@@ -72,7 +77,7 @@ export default function AboutContent() {
                 <p className="text-sm text-muted-foreground">{t(`values.items.${key}.description`)}</p>
               </motion.div>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </Container>
     </section>

@@ -29,7 +29,7 @@ export function FaqAccordion({ items }: FaqAccordionProps) {
             <button
               onClick={() => toggleItem(index)}
               className="w-full flex items-center justify-between p-5 sm:p-6 text-start focus:outline-none"
-              aria-expanded={isOpen}
+              aria-expanded={isOpen ? "true" : "false"}
             >
               <h3 className="font-semibold text-base sm:text-lg pr-4">{item.question}</h3>
               <div
