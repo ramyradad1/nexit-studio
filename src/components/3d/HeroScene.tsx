@@ -34,9 +34,6 @@ const fragmentShader = `
   void main() {
     float dist = length(gl_PointCoord - vec2(0.5));
     if (dist > 0.5) discard;
-    
-    float dist = length(gl_PointCoord - vec2(0.5));
-    if (dist > 0.5) discard;
 
     // Softer, more visible glow for better visibility
     float alpha = smoothstep(0.5, 0.0, dist);
@@ -104,6 +101,13 @@ function Starfield({ theme }: { theme: "light" | "dark" }) {
     const materialRef = useRef<THREE.ShaderMaterial>(null!);
     const pointsRef = useRef<THREE.Points>(null!);
 
+  const uniforms = useMemo(
+    () => ({
+      time: { value: 0 },
+    }),
+    []
+  );
+
     useFrame((state, delta) => {
         if (materialRef.current) {
             materialRef.current.uniforms.time.value = state.clock.elapsedTime;
@@ -129,7 +133,7 @@ function Starfield({ theme }: { theme: "light" | "dark" }) {
               transparent
               blending={theme === "dark" ? THREE.AdditiveBlending : THREE.NormalBlending}
               depthWrite={false}
-              uniforms={{ time: { value: 0 } }}
+        uniforms={uniforms}
               vertexColors
       />
     </points>

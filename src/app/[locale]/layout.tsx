@@ -80,7 +80,7 @@ export default async function LocaleLayout({
           }}
         />
       </head>
-      <body className={`${comfortaa.variable} ${ibmArabic.variable} font-sans antialiased overflow-x-hidden`}>
+      <body className={`${isRtl ? ibmArabic.className : comfortaa.className} antialiased overflow-x-hidden`}>
         <NextIntlClientProvider locale={locale} messages={messages}>
           <ThemeProvider>
             <div className="flex min-h-screen flex-col">
