@@ -1,7 +1,7 @@
 import "../globals.css";
 import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
-import { Inter, IBM_Plex_Sans_Arabic } from "next/font/google";
+import { Comfortaa, IBM_Plex_Sans_Arabic } from "next/font/google";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -9,9 +9,9 @@ import { FloatingWhatsApp } from "@/components/ui/FloatingWhatsApp";
 import { PageTransition } from "@/components/animations/PageTransition";
 import { Toaster } from "sonner";
 
-const inter = Inter({
+const comfortaa = Comfortaa({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-comfortaa",
   display: "swap",
 });
 
@@ -80,9 +80,7 @@ export default async function LocaleLayout({
           }}
         />
       </head>
-      <body
-        className={`${inter.variable} ${ibmArabic.variable} antialiased`}
-      >
+      <body className={`${comfortaa.variable} ${ibmArabic.variable} font-sans antialiased overflow-x-hidden`}>
         <NextIntlClientProvider locale={locale} messages={messages}>
           <ThemeProvider>
             <div className="flex min-h-screen flex-col">

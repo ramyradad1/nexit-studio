@@ -15,7 +15,7 @@
   --color-glass: var(--glass-bg);
   --color-glass-border: var(--glass-border);
 
-  --font-sans: var(--font-inter), var(--font-ibm-arabic), "Segoe UI", system-ui, sans-serif;
+  --font-sans: var(--font-comfortaa), var(--font-ibm-arabic), "Segoe UI", system-ui, sans-serif;
 
   /* Animation tokens */
   --animate-fade-in: fade-in 0.5s ease-out;
