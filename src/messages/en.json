@@ -80,22 +80,38 @@
       "realestate": {
         "title": "Riyadh Residences",
         "description": "Premium real estate landing page for properties in Riyadh.",
-        "tags": "HTML,CSS,JS"
+        "tags": "HTML,CSS,JS",
+        "category": "web"
       },
       "coffee": {
         "title": "Saudi Coffee Co.",
         "description": "E-commerce storefront template for specialty Saudi coffee.",
-        "tags": "React,Tailwind"
+        "tags": "React,Tailwind",
+        "category": "web"
       },
       "agency": {
         "title": "Jeddah Tech Hub",
         "description": "Creative agency portfolio with smooth scroll animations.",
-        "tags": "Vanilla JS,GSAP"
+        "tags": "Vanilla JS,GSAP",
+        "category": "ui"
       },
       "vision": {
         "title": "Vision 2030 Tracker",
         "description": "Interactive data visualization dashboard for national initiatives.",
-        "tags": "React,D3.js"
+        "tags": "React,D3.js",
+        "category": "cloud"
+      },
+      "logistics": {
+        "title": "FastTrack Logistics",
+        "description": "End-to-end supply chain tracking and fleet management system.",
+        "tags": "Next.js,PostgreSQL,Maps",
+        "category": "web"
+      },
+      "education": {
+        "title": "EduLearn Platform",
+        "description": "Scalable e-learning portal with video streaming and interactive quizzes.",
+        "tags": "React Native,Node.js",
+        "category": "mobile"
       }
     }
   },
