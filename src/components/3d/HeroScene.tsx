@@ -1,132 +1,132 @@
 "use client";
 
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Float, MeshDistortMaterial, MeshWobbleMaterial } from "@react-three/drei";
-import { useRef, useMemo } from "react";
+import { useMemo, useRef } from "react";
 import * as THREE from "three";
+import { useTheme } from "@/components/providers/ThemeProvider";
 
-function GradientSphere({ position, scale, speed }: { position: [number, number, number]; scale: number; speed: number }) {
-  const ref = useRef<THREE.Mesh>(null!);
+const vertexShader = `
+  attribute float size;
+  attribute float phase;
+  varying float vPhase;
+  varying vec3 vColor;
+  void main() {
+    vPhase = phase;
+    vColor = color;
+    vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
+    gl_PointSize = size * (200.0 / -mvPosition.z);
+    gl_Position = projectionMatrix * mvPosition;
+  }
+`;
 
-  useFrame((state) => {
-    ref.current.rotation.x = state.clock.elapsedTime * speed * 0.3;
-    ref.current.rotation.y = state.clock.elapsedTime * speed * 0.2;
-  });
+const fragmentShader = `
+  uniform float time;
+  varying float vPhase;
+  varying vec3 vColor;
+  void main() {
+    float dist = length(gl_PointCoord - vec2(0.5));
+    if (dist > 0.5) discard;
+    
+    float alpha = smoothstep(0.5, 0.1, dist);
+    float twinkle = (sin(time * 2.0 + vPhase) + 1.0) / 2.0;
+    float currentOpacity = 0.1 + 0.9 * twinkle;
 
-  return (
-    <Float speed={speed} rotationIntensity={0.5} floatIntensity={1.5}>
-      <mesh ref={ref} position={position} scale={scale}>
-        <icosahedronGeometry args={[1, 4]} />
-        <MeshDistortMaterial
-          color="#06b6d4"
-          roughness={0.2}
-          metalness={0.8}
-          distort={0.3}
-          speed={2}
-          transparent
-          opacity={0.6}
-        />
-      </mesh>
-    </Float>
-  );
-}
+    gl_FragColor = vec4(vColor, alpha * currentOpacity);
+  }
+`;
 
-function GlowTorus({ position, scale, color }: { position: [number, number, number]; scale: number; color: string }) {
-  const ref = useRef<THREE.Mesh>(null!);
-
-  useFrame((state) => {
-    ref.current.rotation.x = state.clock.elapsedTime * 0.4;
-    ref.current.rotation.z = state.clock.elapsedTime * 0.2;
-  });
-
-  return (
-    <Float speed={1.5} rotationIntensity={0.8} floatIntensity={1}>
-      <mesh ref={ref} position={position} scale={scale}>
-        <torusGeometry args={[1, 0.3, 16, 48]} />
-        <MeshWobbleMaterial
-          color={color}
-          roughness={0.3}
-          metalness={0.7}
-          factor={0.2}
-          speed={1}
-          transparent
-          opacity={0.5}
-        />
-      </mesh>
-    </Float>
-  );
-}
-
-function FloatingCube({ position, scale }: { position: [number, number, number]; scale: number }) {
-  const ref = useRef<THREE.Mesh>(null!);
-
-  useFrame((state) => {
-    ref.current.rotation.x = state.clock.elapsedTime * 0.5;
-    ref.current.rotation.y = state.clock.elapsedTime * 0.3;
-  });
-
-  return (
-    <Float speed={2} rotationIntensity={1.2} floatIntensity={1.5}>
-      <mesh ref={ref} position={position} scale={scale}>
-        <boxGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial
-          color="#10b981"
-          roughness={0.15}
-          metalness={0.9}
-          transparent
-          opacity={0.4}
-          wireframe
-        />
-      </mesh>
-    </Float>
-  );
-}
-
-function Particles() {
-  const count = 80;
-  const positions = useMemo(() => {
-    const pos = new Float32Array(count * 3);
-    // Seeded pseudo-random for deterministic output
-    let seed = 42;
-    const seededRandom = () => {
-      seed = (seed * 16807 + 0) % 2147483647;
-      return (seed - 1) / 2147483646;
+function createSeededRandom(seed: number) {
+    let currentSeed = seed;
+    return () => {
+        currentSeed = (currentSeed * 16807) % 2147483647;
+        return (currentSeed - 1) / 2147483646;
     };
+}
+
+function Starfield({ theme }: { theme: "light" | "dark" }) {
+    const count = 1500;
+
+    const [positions, colors, sizes, phases] = useMemo(() => {
+        const pos = new Float32Array(count * 3);
+        const col = new Float32Array(count * 3);
+        const siz = new Float32Array(count);
+        const pha = new Float32Array(count);
+
+        const seededRandom = createSeededRandom(42);
+
+        const isDark = theme === "dark";
+
+        // In dark mode: cyan, sky, and white stars.
+        // In light mode: cyan, sky, and emerald stars.
+        const c1 = new THREE.Color(isDark ? "#ffffff" : "#0ea5e9");
+        const c2 = new THREE.Color("#06b6d4");
+        const c3 = new THREE.Color(isDark ? "#38bdf8" : "#10b981");
+
     for (let i = 0; i < count; i++) {
-      pos[i * 3] = (seededRandom() - 0.5) * 20;
-      pos[i * 3 + 1] = (seededRandom() - 0.5) * 20;
-      pos[i * 3 + 2] = (seededRandom() - 0.5) * 10;
+        const r = 10 + seededRandom() * 40;
+        const theta = seededRandom() * 2 * Math.PI;
+        const phi = Math.acos(2 * seededRandom() - 1);
+
+        pos[i * 3] = r * Math.sin(phi) * Math.cos(theta);
+        pos[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
+        pos[i * 3 + 2] = r * Math.cos(phi);
+
+        const randType = seededRandom();
+        let c = c1;
+        if (randType > 0.66) c = c2;
+        else if (randType > 0.33) c = c3;
+
+        col[i * 3] = c.r;
+        col[i * 3 + 1] = c.g;
+        col[i * 3 + 2] = c.b;
+
+        // Small sizes for subtle stars
+        siz[i] = 0.03 + seededRandom() * 0.08;
+        pha[i] = seededRandom() * Math.PI * 2;
     }
-    return pos;
-  }, []);
+        return [pos, col, siz, pha];
+    }, [theme]);
 
-  const ref = useRef<THREE.Points>(null!);
+    const materialRef = useRef<THREE.ShaderMaterial>(null!);
+    const pointsRef = useRef<THREE.Points>(null!);
 
-  useFrame((state) => {
-    ref.current.rotation.y = state.clock.elapsedTime * 0.02;
-    ref.current.rotation.x = state.clock.elapsedTime * 0.01;
+    useFrame((state, delta) => {
+        if (materialRef.current) {
+            materialRef.current.uniforms.time.value = state.clock.elapsedTime;
+        }
+        if (pointsRef.current) {
+            // Simulate travelling through space by rotating the sphere
+            pointsRef.current.rotation.y += delta * 0.03;
+            pointsRef.current.rotation.x += delta * 0.015;
+        }
   });
 
   return (
-    <points ref={ref}>
+      <points ref={pointsRef}>
       <bufferGeometry>
-        <bufferAttribute
-          attach="attributes-position"
-          args={[positions, 3]}
-        />
+              <bufferAttribute attach="attributes-position" args={[positions, 3]} />
+              <bufferAttribute attach="attributes-color" args={[colors, 3]} />
+              <bufferAttribute attach="attributes-size" args={[sizes, 1]} />
+              <bufferAttribute attach="attributes-phase" args={[phases, 1]} />
       </bufferGeometry>
-      <pointsMaterial
-        size={0.04}
-        color="#22d3ee"
+          <shaderMaterial
+              ref={materialRef}
+              vertexShader={vertexShader}
+              fragmentShader={fragmentShader}
         transparent
-        opacity={0.8}
-        sizeAttenuation
+              // Additive blending works best in dark mode.
+              blending={theme === "dark" ? THREE.AdditiveBlending : THREE.NormalBlending}
+              depthWrite={false}
+              uniforms={{ time: { value: 0 } }}
+              vertexColors
       />
     </points>
   );
 }
 
 export function HeroScene() {
+    const { theme } = useTheme();
+
   return (
     <div className="absolute inset-0 -z-10">
       <Canvas
@@ -135,18 +135,7 @@ export function HeroScene() {
         style={{ pointerEvents: "none" }}
         gl={{ antialias: true, alpha: true }}
       >
-        <ambientLight intensity={0.4} />
-        <directionalLight position={[5, 5, 5]} intensity={0.8} color="#06b6d4" />
-        <pointLight position={[-5, -3, 2]} intensity={0.5} color="#10b981" />
-        <pointLight position={[3, 4, -3]} intensity={0.3} color="#0ea5e9" />
-
-        <GradientSphere position={[-3.5, 1.5, -2]} scale={0.8} speed={1.2} />
-        <GradientSphere position={[4, -1, -3]} scale={0.6} speed={0.8} />
-        <GlowTorus position={[3, 2, -1]} scale={0.5} color="#06b6d4" />
-        <GlowTorus position={[-2, -2.5, -2]} scale={0.4} color="#10b981" />
-        <FloatingCube position={[-4, -1, 0]} scale={0.7} />
-        <FloatingCube position={[4.5, 1.5, -1]} scale={0.5} />
-        <Particles />
+              <Starfield theme={theme} />
       </Canvas>
     </div>
   );
