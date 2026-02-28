@@ -1,0 +1,204 @@
+{
+  "Metadata": {
+    "home": {
+      "title": "NexaIT Studio — Premium Digital Solutions",
+      "description": "We craft stunning websites, mobile apps, and cloud solutions that drive growth."
+    },
+    "services": {
+      "title": "Our Services — NexaIT Studio",
+      "description": "Explore our full range of digital services from web development to cloud engineering."
+    },
+    "projects": {
+      "title": "Our Projects — NexaIT Studio",
+      "description": "Browse our portfolio of premium digital products and client work."
+    },
+    "reviews": {
+      "title": "Client Reviews — NexaIT Studio",
+      "description": "Hear what our clients say about working with NexaIT Studio."
+    },
+    "about": {
+      "title": "About Us — NexaIT Studio",
+      "description": "Learn about our mission, values, and the team behind NexaIT Studio."
+    },
+    "contact": {
+      "title": "Contact Us — NexaIT Studio",
+      "description": "Get in touch with NexaIT Studio. Let's build something great together."
+    }
+  },
+  "Nav": {
+    "home": "Home",
+    "services": "Services",
+    "projects": "Projects",
+    "reviews": "Reviews",
+    "about": "About",
+    "contact": "Contact",
+    "switchLang": "عربي",
+    "menu": "Menu"
+  },
+  "Hero": {
+    "badge": "Digital Innovation Studio",
+    "title": "We Build",
+    "titleHighlight": "Digital Experiences",
+    "titleEnd": "That Matter",
+    "subtitle": "From concept to launch — we design and develop premium websites, mobile apps, and cloud solutions that elevate your brand.",
+    "cta": "Start Your Project",
+    "ctaSecondary": "View Our Work"
+  },
+  "Services": {
+    "heading": "Our Services",
+    "subtitle": "End-to-end digital solutions tailored to accelerate your business growth.",
+    "web": {
+      "title": "Web Development",
+      "description": "High-performance, responsive websites and web apps built with cutting-edge technologies."
+    },
+    "mobile": {
+      "title": "Mobile Development",
+      "description": "Native and cross-platform mobile applications that deliver exceptional user experiences."
+    },
+    "cloud": {
+      "title": "Cloud Solutions",
+      "description": "Scalable cloud architecture, DevOps, and infrastructure solutions for modern businesses."
+    },
+    "ui": {
+      "title": "UI/UX Design",
+      "description": "Human-centered design that transforms complex ideas into intuitive digital products."
+    },
+    "ai": {
+      "title": "AI & Automation",
+      "description": "Intelligent solutions powered by machine learning and workflow automation."
+    },
+    "consulting": {
+      "title": "Digital Consulting",
+      "description": "Strategic guidance to help you navigate digital transformation with confidence."
+    }
+  },
+  "Projects": {
+    "heading": "Featured Projects",
+    "subtitle": "A showcase of our latest work — each project crafted with precision and purpose.",
+    "viewProject": "View Project",
+    "items": {
+      "realestate": {
+        "title": "Riyadh Residences",
+        "description": "Premium real estate landing page for properties in Riyadh.",
+        "tags": "HTML,CSS,JS"
+      },
+      "coffee": {
+        "title": "Saudi Coffee Co.",
+        "description": "E-commerce storefront template for specialty Saudi coffee.",
+        "tags": "React,Tailwind"
+      },
+      "agency": {
+        "title": "Jeddah Tech Hub",
+        "description": "Creative agency portfolio with smooth scroll animations.",
+        "tags": "Vanilla JS,GSAP"
+      },
+      "vision": {
+        "title": "Vision 2030 Tracker",
+        "description": "Interactive data visualization dashboard for national initiatives.",
+        "tags": "React,D3.js"
+      }
+    }
+  },
+  "Reviews": {
+    "heading": "Client Reviews",
+    "subtitle": "What our partners say about collaborating with NexaIT Studio.",
+    "items": {
+      "review1": {
+        "name": "Sarah Mitchell",
+        "role": "CEO, TechVentures",
+        "quote": "NexaIT Studio transformed our digital presence entirely. Their attention to detail and modern approach exceeded all expectations."
+      },
+      "review2": {
+        "name": "Ahmed Al-Hassan",
+        "role": "CTO, DataSync",
+        "quote": "Working with NexaIT was a game-changer. They delivered a complex platform on time and the quality was outstanding."
+      },
+      "review3": {
+        "name": "Emily Chen",
+        "role": "Product Manager, CloudFirst",
+        "quote": "Their design skills are world-class. The UI they created for our app boosted user engagement by 3x."
+      },
+      "review4": {
+        "name": "Omar Yusuf",
+        "role": "Founder, LogiTrack",
+        "quote": "From initial concept to deployment, NexaIT Studio was an incredible partner. Highly recommended."
+      }
+    }
+  },
+  "About": {
+    "heading": "About NexaIT Studio",
+    "subtitle": "We are a team of designers, developers, and strategists passionate about building the future of digital.",
+    "mission": {
+      "title": "Our Mission",
+      "description": "To empower businesses with world-class digital solutions that drive innovation, growth, and lasting impact."
+    },
+    "vision": {
+      "title": "Our Vision",
+      "description": "To be the leading creative technology studio in the MENA region, setting new standards for digital excellence."
+    },
+    "values": {
+      "title": "Our Values",
+      "items": {
+        "innovation": { "title": "Innovation", "description": "We push boundaries and embrace emerging technologies." },
+        "quality": { "title": "Quality", "description": "Every pixel, every line of code is crafted to perfection." },
+        "collaboration": { "title": "Collaboration", "description": "We work closely with our clients as true partners." },
+        "impact": { "title": "Impact", "description": "We measure success by the real-world results we deliver." }
+      }
+    },
+    "stats": {
+      "projects": "150+",
+      "projectsLabel": "Projects Delivered",
+      "clients": "80+",
+      "clientsLabel": "Happy Clients",
+      "years": "8+",
+      "yearsLabel": "Years of Experience",
+      "team": "30+",
+      "teamLabel": "Team Members"
+    }
+  },
+  "Contact": {
+    "heading": "Let's Work Together",
+    "subtitle": "Have a project in mind? Reach out and let's bring your vision to life.",
+    "form": {
+      "name": "Your Name",
+      "email": "Email Address (Optional)",
+      "phone": "Phone Number",
+      "service": "Select a Service",
+      "services": {
+        "web": "Web & App Development",
+        "it": "IT Support & Infrastructure",
+        "cloud": "Microsoft & Cloud",
+        "security": "Security & Compliance",
+        "other": "Other / General Inquiry"
+      },
+      "message": "Tell us about your project...",
+      "send": "Send Message",
+      "sending": "Sending...",
+      "success": "Message sent successfully! We'll be in touch soon.",
+      "error": "Failed to send message. Please try again."
+    },
+    "info": {
+      "emailLabel": "Email",
+      "email": "hello@nexait.studio",
+      "phoneLabel": "Phone",
+      "phone": "+966 55 123 4567",
+      "locationLabel": "Location",
+      "location": "Riyadh, Saudi Arabia",
+      "whatsapp": "Chat on WhatsApp"
+    }
+  },
+  "Footer": {
+    "brand": "NexaIT Studio",
+    "tagline": "Crafting premium digital experiences.",
+    "quickLinks": "Quick Links",
+    "connect": "Connect",
+    "whatsapp": "WhatsApp Us",
+    "rights": "© 2026 NexaIT Studio. All rights reserved."
+  },
+  "NotFound": {
+    "title": "404",
+    "heading": "Page Not Found",
+    "description": "The page you're looking for doesn't exist or has been moved.",
+    "cta": "Back to Home"
+  }
+}
