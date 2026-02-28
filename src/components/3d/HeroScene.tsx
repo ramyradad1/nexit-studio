@@ -4,6 +4,7 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { useMemo, useRef } from "react";
 import * as THREE from "three";
 import { useTheme } from "@/components/providers/ThemeProvider";
+import { Text } from "@react-three/drei";
 
 const vertexShader = `
   attribute float size;
@@ -36,64 +37,69 @@ const fragmentShader = `
   }
 `;
 
-function LightModeGeometry() {
-    const sphereRef = useRef<THREE.Mesh>(null!);
-    const torusRef = useRef<THREE.Mesh>(null!);
-    const boxRef = useRef<THREE.Mesh>(null!);
-    const torus2Ref = useRef<THREE.Mesh>(null!);
+function TechSymbol({
+    text,
+    position,
+    color,
+    fontSize = 1,
+    speed = 1
+}: {
+    text: string;
+    position: [number, number, number];
+    color: string;
+    fontSize?: number;
+    speed?: number;
+}) {
+    const ref = useRef<THREE.Mesh>(null!);
+    const initialY = position[1];
 
     useFrame((state) => {
-        const t = state.clock.elapsedTime;
-        if (sphereRef.current) {
-            sphereRef.current.rotation.x = t * 0.3;
-            sphereRef.current.rotation.y = t * 0.2;
-        }
-        if (torusRef.current) {
-            torusRef.current.rotation.x = t * 0.4;
-            torusRef.current.rotation.z = t * 0.2;
-        }
-        if (torus2Ref.current) {
-            torus2Ref.current.rotation.x = t * -0.4;
-            torus2Ref.current.rotation.z = t * -0.2;
-        }
-        if (boxRef.current) {
-            boxRef.current.rotation.x = t * 0.5;
-            boxRef.current.rotation.y = t * 0.3;
-        }
-    });
+      const t = state.clock.elapsedTime * speed;
+      if (ref.current) {
+          // Gentle floating motion
+          ref.current.position.y = initialY + Math.sin(t) * 0.3;
+          // Gentle rotation
+          ref.current.rotation.y = Math.sin(t * 0.5) * 0.5;
+          ref.current.rotation.z = Math.cos(t * 0.3) * 0.1;
+      }
+  });
 
+    return (
+        <Text
+            ref={ref}
+            position={position}
+            fontSize={fontSize}
+            color={color}
+            anchorX="center"
+            anchorY="middle"
+            fontWeight="bold"
+            outlineWidth={0.02}
+            outlineColor={color}
+            fillOpacity={0.8}
+        >
+            {text}
+        </Text>
+    );
+}
+
+function LightModeGeometry() {
     return (
         <group>
             <ambientLight intensity={0.5} />
             <directionalLight position={[5, 10, 5]} intensity={1.5} color="#ffffff" />
-            <pointLight position={[-5, -3, 2]} intensity={2} color="#0284c7" />
-            <pointLight position={[3, 4, -3]} intensity={1.5} color="#0f766e" />
 
-            {/* Sphere */}
-            <mesh ref={sphereRef} position={[-4, 2, -2]} scale={1.2}>
-                <icosahedronGeometry args={[1, 3]} />
-                <meshStandardMaterial color="#0284c7" roughness={0.3} metalness={0.7} />
-            </mesh>
+          {/* Code Symbols */}
+          <TechSymbol text="< />" position={[-4, 2, -2]} color="#0284c7" fontSize={1.2} speed={0.8} />
+          <TechSymbol text="{ }" position={[4, -1, -1]} color="#0f766e" fontSize={1.5} speed={1.2} />
+          <TechSymbol text="[]" position={[-2, -3, -3]} color="#0369a1" fontSize={1.3} speed={0.9} />
+          <TechSymbol text="/" position={[3, 3, -2]} color="#0ea5e9" fontSize={1.6} speed={1.1} />
 
-            {/* Torus */}
-            <mesh ref={torusRef} position={[4, -1, -1]} scale={0.8}>
-                <torusGeometry args={[1, 0.4, 16, 48]} />
-                <meshStandardMaterial color="#0f766e" roughness={0.2} metalness={0.8} />
-            </mesh>
-
-            {/* Second Torus */}
-            <mesh ref={torus2Ref} position={[-2, -3, -3]} scale={0.6}>
-                <torusGeometry args={[1, 0.3, 16, 48]} />
-                <meshStandardMaterial color="#0369a1" roughness={0.4} metalness={0.6} wireframe />
-            </mesh>
-
-            {/* Cube wireframe */}
-            <mesh ref={boxRef} position={[3, 3, -2]} scale={0.9}>
-                <boxGeometry args={[1, 1, 1]} />
-                <meshStandardMaterial color="#0284c7" wireframe />
-            </mesh>
-        </group>
-    );
+          {/* Decorative Particles for light mode */}
+          <TechSymbol text="+" position={[-5, 0, -4]} color="#10b981" fontSize={0.6} speed={1.5} />
+          <TechSymbol text="*" position={[5, 2, -5]} color="#0284c7" fontSize={0.8} speed={0.7} />
+          <TechSymbol text="+" position={[1, -4, -3]} color="#0369a1" fontSize={0.5} speed={1.3} />
+      </group>
+  );
 }
 
 function createSeededRandom(seed: number) {
