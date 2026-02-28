@@ -21,12 +21,12 @@ const projectImages = [
 ];
 
 const githubLinks = [
-  "https://github.com/nexait-studio/riyadh-residences",
-  "https://github.com/nexait-studio/saudi-coffee-co",
-  "https://github.com/nexait-studio/jeddah-tech-hub",
-  "https://github.com/nexait-studio/vision-2030-tracker",
-  "https://github.com/nexait-studio/fasttrack-logistics",
-  "https://github.com/nexait-studio/edulearn-platform",
+  "https://github.com/ramyradad1/riyadh-residences",
+  "https://github.com/ramyradad1/saudi-coffee-co",
+  "https://github.com/ramyradad1/jeddah-tech-hub",
+  "https://github.com/ramyradad1/vision-2030-tracker",
+  "https://github.com/ramyradad1/fasttrack-logistics",
+  "https://github.com/ramyradad1/edulearn-platform",
 ];
 
 const categories = ["all", "web", "mobile", "ui", "cloud"] as const;
