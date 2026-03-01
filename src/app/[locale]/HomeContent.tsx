@@ -100,14 +100,7 @@ export default function HomeContent() {
             </FadeIn>
 
             <FadeIn delay={0.2}>
-              <motion.div
-                animate={{ y: [0, -10, 0] }}
-                transition={{
-                  duration: 6,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              >
+              <div className="animate-float">
                 <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1]">
                   {t("title")}{" "}
                   <span className="bg-linear-to-r from-accent via-sky-400 to-emerald-400 bg-clip-text text-transparent bg-size-[200%_auto] animate-[gradient-shift_3s_ease-in-out_infinite]">
@@ -116,22 +109,14 @@ export default function HomeContent() {
                   <br />
                   {t("titleEnd")}
                 </h1>
-              </motion.div>
+              </div>
             </FadeIn>
             <FadeIn delay={0.3}>
-              <motion.div
-                animate={{ y: [0, -6, 0] }}
-                transition={{
-                  duration: 5.5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: 0.5,
-                }}
-              >
+              <div className="animate-float [animation-delay:1s]">
                 <p className="mt-6 text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                   {t("subtitle")}
                 </p>
-              </motion.div>
+              </div>
             </FadeIn>
 
             <FadeIn delay={0.4}>

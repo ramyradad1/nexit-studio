@@ -1,7 +1,7 @@
 "use client";
 
 import { Canvas, useFrame } from "@react-three/fiber";
-import { useMemo, useRef } from "react";
+import { useMemo, useRef, useState, useEffect } from "react";
 import * as THREE from "three";
 import { useTheme } from "@/components/providers/ThemeProvider";
 
@@ -54,9 +54,10 @@ function createSeededRandom(seed: number) {
     };
 }
 
+
 function Starfield({ theme }: { theme: "light" | "dark" }) {
-    // Reduced from 1500 to 600 for better performance
-    const count = 600;
+  // Drastically reduced count for performance stability on all hardware
+  const count = 200;
 
     const [positions, colors, sizes, phases] = useMemo(() => {
         const pos = new Float32Array(count * 3);
@@ -68,10 +69,10 @@ function Starfield({ theme }: { theme: "light" | "dark" }) {
 
         const isDark = theme === "dark";
 
-        // Realistic star colors: mostly white with subtle tints of blue, yellow, and orange
-        const c1 = new THREE.Color(isDark ? "#ffffff" : "#0284c7"); // Base
-        const c2 = new THREE.Color(isDark ? "#e0f2fe" : "#0369a1"); // Blueish white
-        const c3 = new THREE.Color(isDark ? "#fef9c3" : "#0369a1"); // Yellowish white
+      // Realistic star colors: mostly white with subtle tints
+      const c1 = new THREE.Color(isDark ? "#ffffff" : "#0284c7");
+      const c2 = new THREE.Color(isDark ? "#e0f2fe" : "#0ea5e9");
+      const c3 = new THREE.Color(isDark ? "#fef9c3" : "#0369a1");
 
     for (let i = 0; i < count; i++) {
         const r = 10 + seededRandom() * 40;
@@ -110,11 +111,11 @@ function Starfield({ theme }: { theme: "light" | "dark" }) {
 
     useFrame((state, delta) => {
         if (materialRef.current) {
-            materialRef.current.uniforms.time.value = state.clock.elapsedTime;
+          materialRef.current.uniforms.time.value = state.clock.getElapsedTime();
         }
         if (pointsRef.current) {
-            pointsRef.current.rotation.y += delta * 0.03;
-            pointsRef.current.rotation.x += delta * 0.015;
+          pointsRef.current.rotation.y += delta * 0.02;
+          pointsRef.current.rotation.x += delta * 0.01;
         }
   });
 
@@ -141,18 +142,45 @@ function Starfield({ theme }: { theme: "light" | "dark" }) {
 }
 
 export function HeroScene() {
-    const { theme } = useTheme();
+  const { theme } = useTheme();
+  const [isVisible, setIsVisible] = useState(true);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0 }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <div className="absolute inset-0 -z-10">
-      <Canvas
-        camera={{ position: [0, 0, 8], fov: 45 }}
-              dpr={[1, 1]}
-        style={{ pointerEvents: "none" }}
-              gl={{ antialias: false, alpha: true, powerPreference: "low-power" }}
-      >
-              <Starfield theme={theme} />
-      </Canvas>
+    <div ref={containerRef} className="absolute inset-0 -z-10 bg-inherit overflow-hidden">
+      {isVisible && (
+        <Canvas
+          key={theme}
+          camera={{ position: [0, 0, 8], fov: 45 }}
+          dpr={1}
+          style={{ pointerEvents: "none" }}
+          gl={{
+            antialias: false,
+            alpha: true,
+            powerPreference: "high-performance",
+            preserveDrawingBuffer: false,
+            stencil: false,
+            depth: false
+          }}
+        >
+          <Starfield theme={theme} />
+        </Canvas>
+      )}
     </div>
   );
 }
