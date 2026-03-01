@@ -28,24 +28,29 @@ const serviceIcons = [
 ];
 
 const serviceKeys = ["ui", "web", "cloud", "mobile", "consulting", "ai"] as const;
-const projectKeys = ["realestate", "coffee", "agency", "vision", "logistics", "education"] as const;
+const projectKeys = ["realestate", "coffee", "agency", "vision", "logistics", "education", "photography", "lessence"] as const;
 
-const projectImages = [
-  "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=60&w=800",
-  "https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&q=60&w=800",
-  "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=60&w=800",
-  "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=60&w=800",
-  "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?auto=format&fit=crop&q=60&w=800",
-  "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=60&w=800",
+const BP = "/nexit-studio";
+const heroImages = [
+  `${BP}/projects/realestate.png`,
+  `${BP}/projects/coffee.png`,
+  `${BP}/projects/agency.png`,
+  `${BP}/projects/vision.png`,
+  `${BP}/projects/logistics.png`,
+  `${BP}/projects/education.png`,
+  `${BP}/projects/photography.png`,
+  `${BP}/projects/lessence.png`,
 ];
 
-const githubLinks = [
-  "https://github.com/nexait-studio/riyadh-residences",
-  "https://github.com/nexait-studio/saudi-coffee-co",
-  "https://github.com/nexait-studio/jeddah-tech-hub",
-  "https://github.com/nexait-studio/vision-2030-tracker",
-  "https://github.com/nexait-studio/fasttrack-logistics",
-  "https://github.com/nexait-studio/edulearn-platform",
+const liveLinks = [
+  "https://ramyradad1.github.io/riyadh-residences",
+  "https://ramyradad1.github.io/saudi-coffee-co",
+  "https://ramyradad1.github.io/jeddah-tech-hub",
+  "https://ramyradad1.github.io/vision-2030-tracker",
+  "https://ramyradad1.github.io/fasttrack-logistics",
+  "https://ramyradad1.github.io/edulearn-platform",
+  "https://ramyradad1.github.io/vision-photography/",
+  "https://lessence-web.vercel.app/",
 ];
 
 export default function HomeContent() {
@@ -191,9 +196,9 @@ export default function HomeContent() {
                   title={pt(`items.${key}.title`)}
                   description={pt(`items.${key}.description`)}
                   tags={pt(`items.${key}.tags`).split(",")}
-                  image={projectImages[i]}
+                  image={heroImages[i]}
                   index={i}
-                  githubUrl={githubLinks[i]}
+                  liveUrl={liveLinks[i]}
                 />
               </motion.div>
             ))}

@@ -203,4 +203,72 @@ export const projectData = {
       "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&q=80&w=2070"
     ]
   },
+  photography: {
+    image: "https://images.unsplash.com/photo-1554080353-a576cf803bda?auto=format&fit=crop&q=80&w=2070",
+    tags: ["HTML", "CSS", "JS", "Responsive"],
+    year: "2025",
+    client: "Vision Photography Studio",
+    liveUrl: "https://ramyradad1.github.io/vision-photography/",
+    en: {
+      overview: "A visually striking photography portfolio website designed to showcase a professional photographer's work with immersive full-screen galleries and elegant transitions.",
+      challenge: "The photographer needed a website that could display high-resolution images without compromising load times, while maintaining a premium feel that reflects the quality of their work.",
+      solution: "We built a modern, responsive photography portfolio with optimized lazy-loading image galleries, smooth scroll-driven animations, and a dark-themed aesthetic that makes the photographs the hero of every page.",
+      results: "The new portfolio attracted 200% more client inquiries within the first month and reduced the average session bounce rate by 55% thanks to the immersive browsing experience.",
+      features: [
+        { title: "Immersive Galleries", description: "Full-screen, lazy-loaded image galleries with smooth zoom and lightbox interactions." },
+        { title: "Responsive Design", description: "Pixel-perfect layouts that look stunning on every device, from mobile to ultra-wide monitors." },
+        { title: "Performance Optimized", description: "Compressed assets and progressive loading ensure fast page loads despite heavy imagery." }
+      ]
+    },
+    ar: {
+      overview: "موقع محفظة تصوير بصري مذهل مصمم لعرض أعمال مصور محترف مع معارض صور غامرة بملء الشاشة وانتقالات أنيقة.",
+      challenge: "احتاج المصور إلى موقع يعرض صوراً عالية الدقة دون التأثير على سرعة التحميل، مع الحفاظ على مظهر فاخر يعكس جودة أعماله.",
+      solution: "قمنا ببناء محفظة تصوير حديثة ومتجاوبة مع معارض صور محسنة بالتحميل الكسول، وحركات سلسة مدفوعة بالتمرير، وتصميم داكن يجعل الصور بطلة كل صفحة.",
+      results: "استقطبت المحفظة الجديدة استفسارات عملاء أكثر بنسبة 200% خلال الشهر الأول وخفضت معدل الارتداد بنسبة 55% بفضل تجربة التصفح الغامرة.",
+      features: [
+        { title: "معارض غامرة", description: "معارض صور بملء الشاشة مع تحميل كسول وتفاعلات تكبير وعرض سلسة." },
+        { title: "تصميم متجاوب", description: "تخطيطات مثالية للبكسل تبدو مذهلة على كل جهاز، من الهاتف المحمول إلى الشاشات فائقة العرض." },
+        { title: "أداء محسن", description: "أصول مضغوطة وتحميل تدريجي يضمنان سرعة تحميل الصفحات رغم كثافة الصور." }
+      ]
+    },
+    gallery: [
+      "https://images.unsplash.com/photo-1554080353-a576cf803bda?auto=format&fit=crop&q=80&w=2070",
+      "https://images.unsplash.com/photo-1500051638674-ff996a0ec29e?auto=format&fit=crop&q=80&w=2070",
+      "https://images.unsplash.com/photo-1471341971476-ae15ff5dd4ea?auto=format&fit=crop&q=80&w=2070"
+    ]
+  },
+  lessence: {
+    image: "https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&q=80&w=2070",
+    tags: ["Next.js", "Tailwind", "Framer Motion", "Vercel"],
+    year: "2025",
+    client: "L'Essence Brand",
+    liveUrl: "https://lessence-web.vercel.app/",
+    en: {
+      overview: "A luxury fragrance and beauty brand website with an immersive, editorial design aesthetic that evokes elegance and sophistication through every interaction.",
+      challenge: "The brand needed an online presence that conveys the same premium feel as their physical boutiques, with a focus on storytelling and emotional connection with their audience.",
+      solution: "We crafted a visually stunning Next.js website with cinematic scroll animations, rich typography, and a sophisticated dark color palette. Every detail was meticulously designed to reflect the brand's luxury positioning.",
+      results: "The website saw a 180% increase in online engagement and a 90% improvement in average session duration, establishing a strong digital identity for the brand.",
+      features: [
+        { title: "Cinematic Animations", description: "Scroll-driven transitions and parallax effects that create an immersive storytelling experience." },
+        { title: "Editorial Design", description: "Magazine-style layouts with premium typography and carefully curated visual hierarchy." },
+        { title: "Performance First", description: "Built on Next.js with optimized assets for sub-second load times despite rich media content." }
+      ]
+    },
+    ar: {
+      overview: "موقع علامة تجارية فاخرة للعطور والجمال بتصميم تحريري غامر يستحضر الأناقة والرقي من خلال كل تفاعل.",
+      challenge: "احتاج البراند إلى حضور رقمي ينقل نفس الشعور الفاخر لمحلاتهم الفعلية، مع التركيز على سرد القصص والتواصل العاطفي مع جمهورهم.",
+      solution: "صممنا موقعاً مذهلاً بصرياً باستخدام Next.js مع حركات تمرير سينمائية، وخطوط فاخرة، ولوحة ألوان داكنة راقية. تم تصميم كل تفصيل بعناية ليعكس مكانة العلامة التجارية الفاخرة.",
+      results: "شهد الموقع زيادة بنسبة 180% في التفاعل الرقمي وتحسناً بنسبة 90% في متوسط مدة الجلسة، مما أسس هوية رقمية قوية للعلامة التجارية.",
+      features: [
+        { title: "حركات سينمائية", description: "انتقالات مدفوعة بالتمرير وتأثيرات بارالاكس تخلق تجربة سرد قصصية غامرة." },
+        { title: "تصميم تحريري", description: "تخطيطات بأسلوب المجلات مع خطوط فاخرة وتسلسل بصري منسق بعناية." },
+        { title: "الأداء أولاً", description: "مبني على Next.js مع أصول محسنة لأوقات تحميل أقل من ثانية رغم المحتوى المرئي الغني." }
+      ]
+    },
+    gallery: [
+      "https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&q=80&w=2070",
+      "https://images.unsplash.com/photo-1615634260167-c8cdede054de?auto=format&fit=crop&q=80&w=2070",
+      "https://images.unsplash.com/photo-1588514727390-91fd5b28f140?auto=format&fit=crop&q=80&w=2070"
+    ]
+  },
 };

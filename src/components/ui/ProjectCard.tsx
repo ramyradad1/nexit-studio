@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { ArrowUpRight, Globe, ExternalLink } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -11,29 +10,35 @@ interface ProjectCardProps {
   title: string;
   description: string;
   tags: string[];
-  image: string;
+  image?: string;
   index: number;
   liveUrl?: string;
   githubUrl?: string;
 }
 
-export function ProjectCard({ slug, title, description, tags, image, index, liveUrl, githubUrl }: ProjectCardProps) {
+export function ProjectCard({ slug, title, description, tags, image, liveUrl }: ProjectCardProps) {
   const locale = useLocale();
 
   return (
     <div
       className="group flex flex-col glass-card overflow-hidden hover:border-accent/40 hover:-translate-y-1.5 transition-all duration-500 h-full hover:shadow-xl hover:shadow-accent/5"
     >
-      {/* Image */}
-      <Link href={`/${locale}/projects/${slug}`} className="relative block aspect-4/3 overflow-hidden">
-        <Image
-          src={image}
-          alt={title}
-          fill
-          loading="lazy"
-          className="object-cover transition-all duration-700 group-hover:scale-110 group-hover:rotate-1"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-        />
+      {/* Hero Section Screenshot */}
+      <Link href={`/${locale}/projects/${slug}`} className="relative block aspect-video overflow-hidden">
+        {image ? (
+          <Image
+            src={image}
+            alt={title}
+            fill
+            loading="lazy"
+            className="object-cover object-top transition-all duration-700 group-hover:scale-105"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
+        ) : (
+          <div className="absolute inset-0 bg-muted/50 flex items-center justify-center">
+            <span className="text-muted-foreground text-sm">No preview</span>
+          </div>
+        )}
         {/* Multi-layer overlay */}
         <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 

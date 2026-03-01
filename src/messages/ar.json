@@ -113,6 +113,18 @@
         "description": "بوابة تعليم إلكتروني قابلة للتوسع مع بث فيديو واختبارات تفاعلية.",
         "tags": "React Native,Node.js",
         "category": "mobile"
+      },
+      "photography": {
+        "title": "فيجن للتصوير",
+        "description": "محفظة تصوير فاخرة مع معارض صور غامرة وتصميم أنيق.",
+        "tags": "HTML,CSS,JS,Responsive",
+        "category": "ui"
+      },
+      "lessence": {
+        "title": "ليسونس",
+        "description": "موقع علامة تجارية فاخرة للعطور بحركات سينمائية وتصميم تحريري أنيق.",
+        "tags": "Next.js,Tailwind,Framer Motion",
+        "category": "web"
       }
     }
   },

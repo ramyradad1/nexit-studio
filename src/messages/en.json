@@ -113,6 +113,18 @@
         "description": "Scalable e-learning portal with video streaming and interactive quizzes.",
         "tags": "React Native,Node.js",
         "category": "mobile"
+      },
+      "photography": {
+        "title": "Vision Photography",
+        "description": "Premium photography portfolio with immersive galleries and elegant design.",
+        "tags": "HTML,CSS,JS,Responsive",
+        "category": "ui"
+      },
+      "lessence": {
+        "title": "L'Essence",
+        "description": "Luxury fragrance brand website with cinematic animations and editorial design.",
+        "tags": "Next.js,Tailwind,Framer Motion",
+        "category": "web"
       }
     }
   },

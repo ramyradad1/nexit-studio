@@ -7,17 +7,20 @@ import { Search } from "lucide-react";
 import { ProjectCard } from "@/components/ui/ProjectCard";
 import { FadeIn } from "@/components/animations/FadeIn";
 
-type ProjectId = "realestate" | "coffee" | "agency" | "vision" | "logistics" | "education";
+type ProjectId = "realestate" | "coffee" | "agency" | "vision" | "logistics" | "education" | "photography" | "lessence";
 
-const projectKeys: ProjectId[] = ["realestate", "coffee", "agency", "vision", "logistics", "education"];
+const projectKeys: ProjectId[] = ["realestate", "coffee", "agency", "vision", "logistics", "education", "photography", "lessence"];
 
-const projectImages = [
-  "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=2070",
-  "https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&q=80&w=2071",
-  "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=2069",
-  "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=2070",
-  "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?auto=format&fit=crop&q=80&w=2000",
-  "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80&w=2000",
+const BP = "/nexit-studio";
+const heroImages = [
+  `${BP}/projects/realestate.png`,
+  `${BP}/projects/coffee.png`,
+  `${BP}/projects/agency.png`,
+  `${BP}/projects/vision.png`,
+  `${BP}/projects/logistics.png`,
+  `${BP}/projects/education.png`,
+  `${BP}/projects/photography.png`,
+  `${BP}/projects/lessence.png`,
 ];
 
 const liveLinks = [
@@ -27,6 +30,8 @@ const liveLinks = [
   "https://ramyradad1.github.io/vision-2030-tracker",
   "https://ramyradad1.github.io/fasttrack-logistics",
   "https://ramyradad1.github.io/edulearn-platform",
+  "https://ramyradad1.github.io/vision-photography/",
+  "https://lessence-web.vercel.app/",
 ];
 
 const categories = ["all", "web", "mobile", "ui", "cloud"] as const;
@@ -45,8 +50,8 @@ export function ProjectsGrid() {
       title: t(`items.${key}.title`),
       description: t(`items.${key}.description`),
       tags: t(`items.${key}.tags`).split(","),
-      category: (t.raw(`items.${key}`) as { category?: string }).category || "web", // fallback to web
-      image: projectImages[i],
+      category: (t.raw(`items.${key}`) as { category?: string }).category || "web",
+      image: heroImages[i],
       liveUrl: liveLinks[i],
     };
   });
