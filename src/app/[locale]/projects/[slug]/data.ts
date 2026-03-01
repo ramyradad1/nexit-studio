@@ -1,6 +1,6 @@
 export const projectData = {
   realestate: {
-    image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=2070",
+    image: "/nexit-studio/projects/realestate.png",
     tags: ["HTML", "CSS", "JS", "Tailwind"],
     year: "2025",
     client: "Riyadh Real Estate Co.",
@@ -34,7 +34,7 @@ export const projectData = {
     ]
   },
   coffee: {
-    image: "https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&q=80&w=2071",
+    image: "/nexit-studio/projects/coffee.png",
     tags: ["React", "Tailwind", "Next.js"],
     year: "2025",
     client: "Saudi Coffee Roasters",
@@ -68,7 +68,7 @@ export const projectData = {
     ]
   },
   agency: {
-    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=2069",
+    image: "/nexit-studio/projects/agency.png",
     tags: ["Vanilla JS", "GSAP", "Framer Motion"],
     year: "2024",
     client: "Jeddah Tech Hub",
@@ -102,7 +102,7 @@ export const projectData = {
     ]
   },
   vision: {
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=2070",
+    image: "/nexit-studio/projects/vision.png",
     tags: ["React", "Framer", "D3.js"],
     year: "2024",
     client: "Ministry of Planning",
@@ -136,11 +136,11 @@ export const projectData = {
     ]
   },
   logistics: {
-    image: "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?auto=format&fit=crop&q=80&w=2000",
+    image: "/nexit-studio/projects/logistics.png",
     tags: ["Next.js", "PostgreSQL", "Google Maps API"],
     year: "2025",
     client: "FastTrack Logistics",
-    liveUrl: "https://ramyradad1.github.io/fasttrack-logistics",
+    liveUrl: "https://ramyradad1.github.io/horizon-logistics",
     en: {
       overview: "A groundbreaking SaaS platform tailored for modern regional supply chains. It offers real-time fleet management, warehouse scanning systems, and automated predictive dispatch mapping.",
       challenge: "The logistics provider struggled with vast inefficiencies relying on outdated legacy dispatch software. Drivers lacked responsive navigation tools, and warehouse managers operated blindly without accurate inventory synchronization.",
@@ -170,11 +170,11 @@ export const projectData = {
     ]
   },
   education: {
-    image: "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80&w=2000",
+    image: "/nexit-studio/projects/education.png",
     tags: ["React Native", "Node.js", "GraphQL"],
     year: "2024",
     client: "EduLearn Academy",
-    liveUrl: "https://ramyradad1.github.io/edulearn-platform",
+    liveUrl: "https://ramyradad1.github.io/eduplay-learning",
     en: {
       overview: "A comprehensive EdTech learning management system (LMS) serving universities and independent educators, allowing them to host, monetize, and gamify their educational content.",
       challenge: "The academy's existing infrastructure buckled under the load of increased remote learning. Video playback suffered from major buffering issues, and the student engagement metrics were alarmingly low.",
@@ -204,7 +204,7 @@ export const projectData = {
     ]
   },
   photography: {
-    image: "https://images.unsplash.com/photo-1554080353-a576cf803bda?auto=format&fit=crop&q=80&w=2070",
+    image: "/nexit-studio/projects/photography.png",
     tags: ["HTML", "CSS", "JS", "Responsive"],
     year: "2025",
     client: "Vision Photography Studio",
@@ -238,7 +238,7 @@ export const projectData = {
     ]
   },
   lessence: {
-    image: "https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&q=80&w=2070",
+    image: "/nexit-studio/projects/lessence.png",
     tags: ["Next.js", "Tailwind", "Framer Motion", "Vercel"],
     year: "2025",
     client: "L'Essence Brand",

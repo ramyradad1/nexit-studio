@@ -28,8 +28,8 @@ const liveLinks = [
   "https://ramyradad1.github.io/saudi-coffee-co",
   "https://ramyradad1.github.io/jeddah-tech-hub",
   "https://ramyradad1.github.io/vision-2030-tracker",
-  "https://ramyradad1.github.io/fasttrack-logistics",
-  "https://ramyradad1.github.io/edulearn-platform",
+  "https://ramyradad1.github.io/horizon-logistics",
+  "https://ramyradad1.github.io/eduplay-learning",
   "https://ramyradad1.github.io/vision-photography/",
   "https://lessence-web.vercel.app/",
 ];

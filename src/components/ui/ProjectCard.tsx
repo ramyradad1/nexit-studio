@@ -23,9 +23,20 @@ export function ProjectCard({ slug, title, description, tags, image, liveUrl }: 
     <div
       className="group flex flex-col glass-card overflow-hidden hover:border-accent/40 hover:-translate-y-1.5 transition-all duration-500 h-full hover:shadow-xl hover:shadow-accent/5"
     >
-      {/* Hero Section Screenshot */}
-      <Link href={`/${locale}/projects/${slug}`} className="relative block aspect-video overflow-hidden">
-        {image ? (
+      {/* Hero Section Preview */}
+      <Link href={`/${locale}/projects/${slug}`} className="relative block aspect-video overflow-hidden bg-muted/20">
+        {liveUrl ? (
+          <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            <iframe
+              src={liveUrl}
+              title={title}
+              className="absolute inset-0 w-[1440px] h-[810px] sm:w-[1920px] sm:h-[1080px] origin-top-left border-0"
+              style={{ transform: "scale(0.33)", width: "1920px", height: "1080px" }}
+              tabIndex={-1}
+              loading="lazy"
+            />
+          </div>
+        ) : image ? (
           <Image
             src={image}
             alt={title}
@@ -40,7 +51,7 @@ export function ProjectCard({ slug, title, description, tags, image, liveUrl }: 
           </div>
         )}
         {/* Multi-layer overlay */}
-        <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+        <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
         {/* Floating action button */}
         <div

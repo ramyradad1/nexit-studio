@@ -134,15 +134,28 @@ export default function ProjectDetailClient({ slug }: { slug: string }) {
               transition={{ duration: 0.7, ease: "easeOut" }}
               className="lg:col-span-7"
             >
-              <div className="relative aspect-4/3 lg:aspect-square xl:aspect-4/3 rounded-3xl overflow-hidden border border-border/50 shadow-2xl group">
-                <Image
-                  src={project.image}
-                  alt={t(`items.${projectKey}.title`)}
-                  fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  sizes="(max-width: 1024px) 100vw, 60vw"
-                  priority
-                />
+              <div className="relative aspect-4/3 lg:aspect-square xl:aspect-4/3 rounded-3xl overflow-hidden border border-border/50 shadow-2xl group bg-muted/20">
+                {project.liveUrl ? (
+                  <>
+                    <iframe
+                      src={project.liveUrl}
+                      title={t(`items.${projectKey}.title`)}
+                      className="absolute inset-0 w-full h-full border-0 transform transition-transform duration-700"
+                      sandbox="allow-scripts allow-same-origin allow-popups"
+                    />
+                    {/* An overlay that prevents scrolling on the iframe until hover or interact, Optional */}
+                    <div className="absolute inset-0 bg-transparent" style={{ pointerEvents: "none" }}></div>
+                  </>
+                ) : (
+                  <Image
+                    src={project.image}
+                    alt={t(`items.${projectKey}.title`)}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    sizes="(max-width: 1024px) 100vw, 60vw"
+                    priority
+                  />
+                )}
                 <div className="absolute inset-0 bg-linear-to-tr from-background/20 to-transparent pointer-events-none"></div>
               </div>
             </motion.div>
