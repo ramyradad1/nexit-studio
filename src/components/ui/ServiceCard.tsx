@@ -12,13 +12,8 @@ interface ServiceCardProps {
 
 export function ServiceCard({ icon, title, description, index }: ServiceCardProps) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.5, delay: index * 0.1, ease: [0.21, 0.47, 0.32, 0.98] }}
-      whileHover={{ y: -8, transition: { duration: 0.3 } }}
-      className="group relative glass-card p-6 sm:p-8 hover:border-accent/40 transition-all duration-500 cursor-pointer overflow-hidden"
+    <div
+      className="group relative glass-card p-6 sm:p-8 hover:border-accent/40 hover:-translate-y-2 cursor-pointer overflow-hidden"
     >
       {/* Animated gradient glow on hover */}
       <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-linear-to-br from-accent/5 via-transparent to-sky-500/5 pointer-events-none" />
@@ -37,6 +32,6 @@ export function ServiceCard({ icon, title, description, index }: ServiceCardProp
 
       {/* Bottom accent line */}
       <div className="absolute bottom-0 left-0 h-0.5 w-0 bg-linear-to-r from-accent to-sky-400 group-hover:w-full transition-all duration-700 ease-out" />
-    </motion.div>
+    </div>
   );
 }

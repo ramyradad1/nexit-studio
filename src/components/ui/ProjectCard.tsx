@@ -21,13 +21,8 @@ export function ProjectCard({ slug, title, description, tags, image, index, live
   const locale = useLocale();
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.5, delay: index * 0.12, ease: [0.21, 0.47, 0.32, 0.98] }}
-      whileHover={{ y: -6, transition: { duration: 0.3 } }}
-      className="group flex flex-col glass-card overflow-hidden hover:border-accent/40 transition-all duration-500 h-full hover:shadow-xl hover:shadow-accent/5"
+    <div
+      className="group flex flex-col glass-card overflow-hidden hover:border-accent/40 hover:-translate-y-1.5 transition-all duration-500 h-full hover:shadow-xl hover:shadow-accent/5"
     >
       {/* Image */}
       <Link href={`/${locale}/projects/${slug}`} className="relative block aspect-4/3 overflow-hidden">
@@ -43,14 +38,11 @@ export function ProjectCard({ slug, title, description, tags, image, index, live
         <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
         {/* Floating action button */}
-        <motion.div
-          className="absolute bottom-4 right-4 h-12 w-12 rounded-full bg-accent flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-all duration-500 shadow-lg shadow-accent/30"
-          whileHover={{ scale: 1.15 }}
-          initial={{ y: 20, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
+        <div
+          className="absolute bottom-4 right-4 h-12 w-12 rounded-full bg-accent flex items-center justify-center text-white opacity-0 translate-y-4 group-hover:translate-y-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500 shadow-lg shadow-accent/30"
         >
           <ArrowUpRight size={20} />
-        </motion.div>
+        </div>
 
         {/* Tags floating on image hover */}
         <div className="absolute bottom-4 left-4 flex flex-wrap gap-1.5 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0">
@@ -98,6 +90,6 @@ export function ProjectCard({ slug, title, description, tags, image, index, live
           )}
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }
